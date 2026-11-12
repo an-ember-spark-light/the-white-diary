@@ -118,11 +118,12 @@ body {
 
 .quote-text,
 .reader blockquote {
-    hyphens: none;
-    -webkit-hyphens: none;
-    word-break: normal;
-    overflow-wrap: normal;
-    text-wrap: pretty;
+    font-family: var(--serif);
+    font-optical-sizing: none;
+    font-variation-settings: "opsz" 36, "wght" 350;
+    font-weight: 350;
+    font-synthesis: none;
+    letter-spacing: -0.005em;
 }
 
 .quote-text {
@@ -229,6 +230,189 @@ body {
     #quotes-container { column-count: 1; }
     .reader .prev, .reader .next { top: auto; bottom: 22px; transform: none; }
 }
+
+/* =========================================
+   SECOND SECTION — SVG GALLERY
+========================================= */
+
+.svg-section {
+    margin-top: clamp(90px, 12vw, 160px);
+}
+
+#svg-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.6vw, 26px);
+    align-items: stretch;
+}
+
+.svg-card {
+    appearance: none;
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    padding: clamp(12px, 1.5vw, 22px);
+    overflow: hidden;
+    cursor: pointer;
+
+    border: 1px solid rgba(210, 205, 230, 0.18);
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 35, 58, 0.35),
+            rgba(4, 6, 18, 0.65)
+        );
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.svg-card:hover,
+.svg-card:focus-visible {
+    border-color: rgba(210, 205, 230, 0.55);
+    background: rgba(20, 24, 42, 0.75);
+    outline: none;
+}
+
+.svg-card:hover {
+    transform: translateY(-3px);
+}
+
+.svg-card:focus-visible {
+    outline: 2px solid rgba(220, 210, 245, 0.75);
+    outline-offset: 3px;
+}
+
+.svg-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* =========================================
+   ENLARGED SVG READER
+========================================= */
+
+.svg-reader {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+
+    display: none;
+    place-items: center;
+
+    padding: clamp(55px, 8vw, 100px);
+
+    background: rgba(2, 3, 12, 0.94);
+
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+}
+
+.svg-reader.open {
+    display: grid;
+}
+
+.svg-reader img {
+    display: block;
+
+    width: min(72vw, 760px);
+    height: min(72vw, 760px);
+
+    max-width: 76vh;
+    max-height: 76vh;
+
+    object-fit: contain;
+}
+
+.svg-reader button {
+    position: absolute;
+    z-index: 2;
+
+    border: 0;
+    background: none;
+    cursor: pointer;
+
+    color: rgba(235, 228, 240, 0.8);
+    font: 500 0.85rem var(--sans);
+
+    padding: 14px 18px;
+    border-radius: 999px;
+
+    opacity: 0.75;
+}
+
+.svg-reader button:hover,
+.svg-reader button:focus-visible {
+    opacity: 1;
+    background: rgba(220, 210, 245, 0.12);
+    outline: none;
+}
+
+.svg-reader .svg-close {
+    top: max(18px, env(safe-area-inset-top));
+    right: 18px;
+}
+
+.svg-reader .svg-prev {
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+}
+
+.svg-reader .svg-next {
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+}
+
+/* =========================================
+   RESPONSIVE GRID
+========================================= */
+
+@media (max-width: 1200px) {
+    #svg-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 800px) {
+    #svg-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 540px) {
+    #svg-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .svg-card {
+        border-radius: 16px;
+        padding: 10px;
+    }
+
+    .svg-reader .svg-prev,
+    .svg-reader .svg-next {
+        top: auto;
+        bottom: 22px;
+        transform: none;
+    }
+}
+
 </style>
 </head>
 
@@ -445,6 +629,36 @@ body {
     </figure>
 </div>
 
+<!-- SECOND SECTION: SVG GALLERY -->
+
+<section class="page svg-section" aria-label="SVG artwork gallery">
+    <header class="masthead">
+        <h1>Reassurance Of A Better Life</h1>
+    </header>
+    <main id="svg-container">
+    </main>
+
+</section>
+
+<!-- ENLARGED SVG READER -->
+
+<div class="svg-reader"
+     id="svg-reader"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Artwork viewer">
+
+    <button class="svg-close" aria-label="Close">Close</button>
+
+    <button class="svg-prev" aria-label="Previous artwork">‹</button>
+
+    <button class="svg-next" aria-label="Next artwork">›</button>
+
+    <img id="svg-reader-image" alt="Enlarged artwork">
+
+</div>
+
+
 <script>
 const container = document.getElementById("quotes-container");
 const body = document.body;
@@ -609,6 +823,228 @@ async function loadQuotes() {
 
 loadQuotes();
 </script>
+<script>
+/* =========================================
+   SVG GALLERY
+========================================= */
+
+const svgContainer = document.getElementById("svg-container");
+
+const svgReader = document.getElementById("svg-reader");
+const svgReaderImage = document.getElementById("svg-reader-image");
+
+const svgClose = svgReader.querySelector(".svg-close");
+const svgPrev = svgReader.querySelector(".svg-prev");
+const svgNext = svgReader.querySelector(".svg-next");
+
+let artworks = [];
+let svgCards = [];
+let currentArtwork = -1;
+let previousSvgFocus = null;
+
+
+/* =========================================
+   LOAD SVG JSON
+========================================= */
+
+async function loadSVGs() {
+
+    try {
+
+        const response = await fetch("svg.json");
+
+        if (!response.ok) {
+            throw new Error("Could not load svg.json");
+        }
+
+        const data = await response.json();
+
+        artworks = Object.keys(data)
+            .sort((a, b) =>
+                a.localeCompare(b, undefined, { numeric: true })
+            )
+            .map(id => data[id])
+            .filter(filename =>
+                typeof filename === "string" &&
+                filename.length > 0 &&
+                filename.toLowerCase().endsWith(".svg") &&
+                !filename.includes("/") &&
+                !filename.includes("\\")
+            );
+
+        if (artworks.length === 0) {
+            throw new Error("No valid SVG files found.");
+        }
+
+        renderSVGs();
+
+    } catch (error) {
+
+        console.error("SVG gallery error:", error);
+
+    }
+
+}
+
+
+/* =========================================
+   RENDER SVG GALLERY
+========================================= */
+
+function renderSVGs() {
+
+    svgContainer.innerHTML = "";
+
+    svgCards = artworks.map((filename, index) => {
+
+        const path = "svgs/" + encodeURIComponent(filename);
+
+        const card = document.createElement("button");
+
+        card.type = "button";
+        card.className = "svg-card";
+        card.setAttribute("aria-label", "Open artwork " + (index + 1));
+
+        const img = document.createElement("img");
+
+        img.src = path;
+        img.alt = "";
+        img.loading = "lazy";
+        img.decoding = "async";
+
+        card.appendChild(img);
+
+        card.addEventListener("click", () => {
+            openSVGReader(index, card);
+        });
+
+        svgContainer.appendChild(card);
+
+        return card;
+
+    });
+
+}
+
+
+/* =========================================
+   OPEN ENLARGED SVG
+========================================= */
+
+function openSVGReader(index, sourceCard) {
+
+    currentArtwork = index;
+    previousSvgFocus = sourceCard;
+
+    showSVGArtwork(index);
+
+    svgReader.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+    svgClose.focus({ preventScroll: true });
+
+}
+
+
+function showSVGArtwork(index) {
+
+    currentArtwork = index;
+
+    const filename = artworks[index];
+
+    svgReaderImage.src = "svgs/" + encodeURIComponent(filename);
+
+}
+
+
+/* =========================================
+   CLOSE SVG READER
+========================================= */
+
+function closeSVGReader() {
+
+    svgReader.classList.remove("open");
+
+    svgReaderImage.removeAttribute("src");
+
+    document.body.style.overflow = "";
+
+    currentArtwork = -1;
+
+    if (previousSvgFocus && previousSvgFocus.isConnected) {
+        previousSvgFocus.focus({ preventScroll: true });
+    }
+
+    previousSvgFocus = null;
+
+}
+
+
+/* =========================================
+   PREVIOUS / NEXT NAVIGATION
+========================================= */
+
+function stepSVG(direction) {
+
+    if (currentArtwork < 0 || artworks.length === 0) return;
+
+    const nextIndex =
+        (currentArtwork + direction + artworks.length) % artworks.length;
+
+    showSVGArtwork(nextIndex);
+
+}
+
+
+svgClose.addEventListener("click", closeSVGReader);
+
+svgPrev.addEventListener("click", stepSVG.bind(null, -1));
+
+svgNext.addEventListener("click", stepSVG.bind(null, 1));
+
+
+/* Close when clicking outside the artwork */
+
+svgReader.addEventListener("click", event => {
+
+    if (event.target === svgReader) {
+        closeSVGReader();
+    }
+
+});
+
+
+/* =========================================
+   KEYBOARD NAVIGATION
+========================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (currentArtwork < 0) return;
+
+    if (event.key === "Escape") {
+        closeSVGReader();
+    }
+
+    if (event.key === "ArrowRight") {
+        stepSVG(1);
+    }
+
+    if (event.key === "ArrowLeft") {
+        stepSVG(-1);
+    }
+
+});
+
+
+/* =========================================
+   START SVG GALLERY
+========================================= */
+
+loadSVGs();
+</script>
+
 
 </body>
 </html>
