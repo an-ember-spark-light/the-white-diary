@@ -235,45 +235,30 @@ body {
    SECOND SECTION — SVG GALLERY
 ========================================= */
 
-.svg-section {
-    margin-top: clamp(90px, 12vw, 160px);
-}
-
 #svg-container {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(14px, 1.6vw, 26px);
-    align-items: stretch;
+    align-items: start;
 }
 
 .svg-card {
     appearance: none;
-    display: block;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     width: 100%;
-    aspect-ratio: 1 / 1;
     min-width: 0;
     padding: clamp(12px, 1.5vw, 22px);
-    overflow: hidden;
+    gap: 8px;
     cursor: pointer;
-
     border: 1px solid rgba(210, 205, 230, 0.18);
     border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(30, 35, 58, 0.35),
-            rgba(4, 6, 18, 0.65)
-        );
-
+    background: linear-gradient(145deg, rgba(30, 35, 58, 0.35), rgba(4, 6, 18, 0.65));
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-
-    transition:
-        border-color 0.25s ease,
-        background 0.25s ease,
-        transform 0.25s ease;
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
 .svg-card:hover,
@@ -295,8 +280,22 @@ body {
 .svg-card img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
+    flex: 0 0 auto;
+}
+
+.svg-description {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 350;
+    line-height: 1.5;
+    text-align: left;
+    color: rgba(235, 228, 240, 0.78);
+    text-wrap: pretty;
 }
 
 /* =========================================
@@ -633,7 +632,8 @@ body {
 
 <section class="page svg-section" aria-label="SVG artwork gallery">
     <header class="masthead">
-        <h1>Reassurance Of A Better Life</h1>
+        <h1>Reassurance of a better life</h1>
+        <p id="svg-count">Observation & Imagination</p>
     </header>
     <main id="svg-container">
     </main>
@@ -864,12 +864,14 @@ async function loadSVGs() {
                 a.localeCompare(b, undefined, { numeric: true })
             )
             .map(id => data[id])
-            .filter(filename =>
-                typeof filename === "string" &&
-                filename.length > 0 &&
-                filename.toLowerCase().endsWith(".svg") &&
-                !filename.includes("/") &&
-                !filename.includes("\\")
+            .filter(item =>
+                item &&
+                typeof item.name === "string" &&
+                item.name.length > 0 &&
+                item.name.toLowerCase().endsWith(".svg") &&
+                !item.name.includes("/") &&
+                !item.name.includes("\\") &&
+                typeof item.text === "string"
             );
 
         if (artworks.length === 0) {
@@ -891,13 +893,17 @@ async function loadSVGs() {
    RENDER SVG GALLERY
 ========================================= */
 
+
 function renderSVGs() {
 
     svgContainer.innerHTML = "";
 
-    svgCards = artworks.map((filename, index) => {
+    // document.getElementById("svg-count").textContent =
+    //     artworks.length + (artworks.length === 1 ? " artwork" : " artworks");
 
-        const path = "svgs/" + encodeURIComponent(filename);
+    svgCards = artworks.map((item, index) => {
+
+        const path = "svgs/" + encodeURIComponent(item.name);
 
         const card = document.createElement("button");
 
@@ -912,7 +918,12 @@ function renderSVGs() {
         img.loading = "lazy";
         img.decoding = "async";
 
-        card.appendChild(img);
+        const description = document.createElement("p");
+
+        description.className = "svg-description";
+        description.textContent = item.text;
+
+        card.append(img, description);
 
         card.addEventListener("click", () => {
             openSVGReader(index, card);
@@ -951,12 +962,11 @@ function showSVGArtwork(index) {
 
     currentArtwork = index;
 
-    const filename = artworks[index];
+    const filename = artworks[index].name;
 
     svgReaderImage.src = "svgs/" + encodeURIComponent(filename);
 
 }
-
 
 /* =========================================
    CLOSE SVG READER
