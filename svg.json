@@ -10,5 +10,9 @@
     "3": {
         "name": "three_wishes.svg",
         "text": "At least in this lifetime?"
+    },
+    "4": {
+        "name": "bokeh.svg",
+        "text": "A real question."
     }
 }
