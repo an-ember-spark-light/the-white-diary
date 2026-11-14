@@ -1,3 +1,1 @@
-# the-white-diary
-
-Make sure the svg's size is 1000x1000
+[⏾](https://an-ember-spark-light.github.io/the-white-diary)
