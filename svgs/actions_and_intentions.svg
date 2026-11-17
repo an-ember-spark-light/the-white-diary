@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <!-- White Background -->
+  <rect width="1000" height="1000" fill="#ffffff" />
+
+  <!-- Confusion Matrix Group (Shifted slightly left by -80px) -->
+  <g transform="translate(-80, 0)">
+    <!-- Main Square Container -->
+    <g stroke="#000000" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+      
+      <!-- QUADRANT 1: Top-Left (300,300 to 500,500) - Unshaded -->
+      <polygon points="300,300 500,300 300,500" fill="none" />
+      <polygon points="500,300 500,500 300,500" fill="none" />
+
+      <!-- QUADRANT 2: Top-Right (500,300 to 700,500) - Top-Left Triangle Shaded -->
+      <polygon points="500,300 700,300 500,500" fill="#D3D3D3" />
+      <polygon points="700,300 700,500 500,500" fill="none" />
+
+      <!-- QUADRANT 3: Bottom-Right (500,500 to 700,700) - Both Triangles Shaded -->
+      <polygon points="500,500 700,500 500,700" fill="#D3D3D3" />
+      <polygon points="700,500 700,700 500,700" fill="#D3D3D3" />
+
+      <!-- QUADRANT 4: Bottom-Left (300,500 to 500,700) - Bottom-Right Triangle Shaded -->
+      <polygon points="300,500 500,500 300,700" fill="none" />
+      <polygon points="500,500 500,700 300,700" fill="#D3D3D3" />
+
+    </g>
+
+    <!-- External Axis Line Segments -->
+    <g stroke="#000000" stroke-width="3" stroke-linecap="round">
+      <!-- Top Horizontal Segment -->
+      <line x1="300" y1="260" x2="700" y2="260" />
+      <!-- Left Vertical Segment -->
+      <line x1="260" y1="300" x2="260" y2="700" />
+    </g>
+
+    <!-- Axis Labels (Swapped Lanes) -->
+    <g font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#000000" text-anchor="middle" dominant-baseline="middle">
+      <!-- Outer Lane: Axis Titles -->
+      <text x="500" y="185">action</text>
+      <text x="185" y="500" transform="rotate(-90 185 500)">intention</text>
+
+      <!-- Inner Lane: X-Axis Class Labels (Closer to top boundary) -->
+      <text x="400" y="225">good</text>
+      <text x="600" y="225">bad</text>
+
+      <!-- Inner Lane: Y-Axis Class Labels (Closer to left boundary) -->
+      <text x="225" y="400" transform="rotate(-90 225 400)">good</text>
+      <text x="225" y="600" transform="rotate(-90 225 600)">bad</text>
+    </g>
+  </g>
+
+  <!-- Legend Group (Placed in the newly created space on the right) -->
+  <g transform="translate(690, 395)">
+    <!-- Shapes -->
+    <g stroke="#000000" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <!-- White Square -->
+      <rect x="0" y="0" width="32" height="32" fill="#ffffff" />
+      
+      <!-- Gray Square -->
+      <rect x="0" y="55" width="32" height="32" fill="#D3D3D3" />
+      
+      <!-- Small Top-Left Triangle -->
+      <polygon points="0,110 32,110 0,142" fill="#ffffff" />
+      
+      <!-- Small Bottom-Right Triangle -->
+      <polygon points="32,165 32,197 0,197" fill="#ffffff" />
+    </g>
+
+    <!-- Labels -->
+    <g font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#000000" text-anchor="start" dominant-baseline="middle">
+      <text x="48" y="17">victory</text>
+      <text x="48" y="72">defeat</text>
+      <text x="48" y="127">beginning</text>
+      <text x="48" y="182">ending</text>
+    </g>
+  </g>
+</svg>
