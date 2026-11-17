@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+<rect width="1000" height="1000" fill="#ffffff"/>
+<text x="105.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Feasibility</text>
+<text x="105.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">can I do</text>
+<text x="105.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">this?</text>
+<text x="236.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Support</text>
+<text x="236.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">do you have</text>
+<text x="236.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">the help?</text>
+<text x="367.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Effort</text>
+<text x="367.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">are you willing to</text>
+<text x="367.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">take this seriously?</text>
+<text x="498.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Stakes</text>
+<text x="498.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">how much does this</text>
+<text x="498.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">matter to me?</text>
+<text x="629.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Intent</text>
+<text x="629.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">is your reason honest</text>
+<text x="629.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">and clear to you?</text>
+<text x="760.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Impact</text>
+<text x="760.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">how much does this</text>
+<text x="760.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">matter to the world?</text>
+<text x="891.5" y="160" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">Timing</text>
+<text x="891.5" y="184" text-anchor="middle" font-size="11.5" fill="#6b7280">is this meant</text>
+<text x="891.5" y="201" text-anchor="middle" font-size="11.5" fill="#6b7280">to be?</text>
+<g>
+  <text x="500" y="250"
+        text-anchor="middle"
+        font-size="14"
+        font-weight="600"
+        fill="black">
+    Increasing difficulty
+  </text>
+
+  <line x1="190" y1="270" x2="960" y2="270"
+        stroke="black"
+        stroke-width="1.8"
+        stroke-linecap="round"/>
+
+  <polygon points="960,265 970,270 960,275"
+           fill="black"/>
+</g>
+<text x="245.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Learn something</text>
+<text x="245.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">new</text>
+<text x="355.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Pass an</text>
+<text x="355.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">exam</text>
+<text x="465.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Develop a</text>
+<text x="465.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">habit</text>
+<text x="575.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Overcome a</text>
+<text x="575.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">fear</text>
+<text x="685.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Achieve a</text>
+<text x="685.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">goal</text>
+<text x="795.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Build something</text>
+<text x="795.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">meaningful</text>
+<text x="905.0" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">Make a</text>
+<text x="905.0" y="340" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2937">change</text>
+<rect x="40" y="356" width="150" height="50" fill="#f4b942" stroke="#000" stroke-width="1"/>
+<text x="56" y="386.0" font-size="14" font-weight="700" fill="#1f2937">Feasibility</text>
+<rect x="190" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="300" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="410" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="520" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="630" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="740" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="356" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="386.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="406" width="150" height="50" fill="#2a9d8f" stroke="#000" stroke-width="1"/>
+<text x="56" y="436.0" font-size="14" font-weight="700" fill="#ffffff">Support</text>
+<rect x="190" y="406" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="436.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="410" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="520" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="630" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="740" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="406" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="436.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="456" width="150" height="50" fill="#2a9d8f" stroke="#000" stroke-width="1"/>
+<text x="56" y="486.0" font-size="14" font-weight="700" fill="#ffffff">Effort</text>
+<rect x="190" y="456" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="486.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="456" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="486.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="410" y="456" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="486.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="520" y="456" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="486.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="630" y="456" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="486.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="740" y="456" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="486.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="456" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="486.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="506" width="150" height="50" fill="#f4b942" stroke="#000" stroke-width="1"/>
+<text x="56" y="536.0" font-size="14" font-weight="700" fill="#1f2937">Stakes</text>
+<rect x="190" y="506" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="536.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="506" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="536.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="410" y="506" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="536.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="520" y="506" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="536.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="630" y="506" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="536.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="740" y="506" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="536.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="506" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="536.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="556" width="150" height="50" fill="#2a9d8f" stroke="#000" stroke-width="1"/>
+<text x="56" y="586.0" font-size="14" font-weight="700" fill="#ffffff">Intent</text>
+<rect x="190" y="556" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="586.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="556" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="586.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="410" y="556" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="586.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="520" y="556" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="586.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="630" y="556" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="586.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="740" y="556" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="586.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="556" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="586.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="606" width="150" height="50" fill="#f4b942" stroke="#000" stroke-width="1"/>
+<text x="56" y="636.0" font-size="14" font-weight="700" fill="#1f2937">Impact</text>
+<rect x="190" y="606" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="636.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="606" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="636.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="410" y="606" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="636.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="520" y="606" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="636.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="630" y="606" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="636.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="740" y="606" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="636.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="850" y="606" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="636.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="656" width="150" height="50" fill="#e76f51" stroke="#000" stroke-width="1"/>
+<text x="56" y="686.0" font-size="14" font-weight="700" fill="#ffffff">Timing</text>
+<rect x="190" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="245.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="300" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="355.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="410" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="465.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="520" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="575.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="630" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="685.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="740" y="656" width="110" height="50" fill="#e3e8ef" stroke="#000" stroke-width="1"/>
+<!-- <text x="795.0" y="686.0" text-anchor="middle" font-size="13" font-weight="400" fill="#8a94a3">low</text> -->
+<rect x="850" y="656" width="110" height="50" fill="#3d5a80" stroke="#000" stroke-width="1"/>
+<!-- <text x="905.0" y="686.0" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">high</text> -->
+<rect x="40" y="300" width="920" height="406" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="356" x2="960" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="190" y1="300" x2="190" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="300" y1="300" x2="300" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="410" y1="300" x2="410" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="520" y1="300" x2="520" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="630" y1="300" x2="630" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="740" y1="300" x2="740" y2="356" stroke="#000" stroke-width="1"/>
+<line x1="850" y1="300" x2="850" y2="356" stroke="#000" stroke-width="1"/>
+<text x="40" y="794" font-size="12" font-weight="700" fill="#1f2937">ROW COLOUR</text>
+<rect x="200" y="780" width="22" height="22" fill="#2a9d8f" stroke="#000000" stroke-width="1.5"/>
+<text x="232" y="796" font-size="13" fill="#1f2937">Full control</text>
+<rect x="430" y="780" width="22" height="22" fill="#f4b942" stroke="#000000" stroke-width="1.5"/>
+<text x="462" y="796" font-size="13" fill="#1f2937">Partial control</text>
+<rect x="660" y="780" width="22" height="22" fill="#e76f51" stroke="#000000" stroke-width="1.5"/>
+<text x="692" y="796" font-size="13" fill="#1f2937">No control</text>
+<text x="40" y="844" font-size="12" font-weight="700" fill="#1f2937">CELL COLOUR</text>
+<rect x="200" y="830" width="22" height="22" fill="#3d5a80" stroke="#000000" stroke-width="1.5"/>
+<text x="232" y="846" font-size="13" fill="#1f2937">Essential here</text>
+<rect x="430" y="830" width="22" height="22" fill="#e3e8ef" stroke="#000000" stroke-width="1.5"/>
+<text x="462" y="846" font-size="13" fill="#1f2937">Barely needed</text>
+</svg>

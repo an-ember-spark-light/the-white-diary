@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1050 717" preserveAspectRatio="none" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <!-- Soft blur filters (generous regions so nothing clips into hard edges) -->
+    <filter id="blurXL" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="38"/></filter>
+    <filter id="blurL" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="22"/></filter>
+    <filter id="blurM" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="blurS" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6"/></filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+
+    <!-- Text legibility: soft dark shadow behind the letters -->
+    <filter id="textShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.85"/>
+    </filter>
+
+    <!-- Spectrum gradient: deep blue -> azure -> green -> yellow -> orange -> red -->
+    <linearGradient id="spectrum" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1b2fd6" stop-opacity="0"/>
+      <stop offset="0.12" stop-color="#2038e0" stop-opacity="0.9"/>
+      <stop offset="0.30" stop-color="#1f86e8"/>
+      <stop offset="0.48" stop-color="#2db86a"/>
+      <stop offset="0.62" stop-color="#e8cf1e"/>
+      <stop offset="0.80" stop-color="#ff8c1a"/>
+      <stop offset="0.93" stop-color="#ff4b1c"/>
+      <stop offset="1" stop-color="#ff4b1c" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Background greys -->
+    <linearGradient id="rightGrey" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6b6865"/>
+      <stop offset="0.45" stop-color="#3f3e3d"/>
+      <stop offset="1" stop-color="#232323"/>
+    </linearGradient>
+    <radialGradient id="warmHaze" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8a847f" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#8a847f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="leftVignette" cx="0.3" cy="0.4" r="0.8">
+      <stop offset="0" stop-color="#0a0a0a" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.6"/>
+    </radialGradient>
+
+    <!-- A single leaf-shaped streak, length 1, height 1 (scaled per use) -->
+    <path id="leaf" d="M0,0 Q0.5,-1 1,0 Q0.5,1 0,0 Z" fill="url(#spectrum)"/>
+
+    <!-- All seven spectrum streaks (outer groups carry no blur so blur stays uniform) -->
+    <g id="streaks">
+      <g transform="translate(180,170) rotate(-39.6) scale(149,12)"><use href="#leaf"/></g>
+      <g transform="translate(280,335) rotate(-47.5) scale(145,12)"><use href="#leaf"/></g>
+      <g transform="translate(270,520) rotate(-53.1) scale(225,32)"><use href="#leaf"/></g>
+      <g transform="translate(490,545) rotate(-61.9) scale(187,16)"><use href="#leaf"/></g>
+      <g transform="translate(585,640) rotate(-70.8) scale(228,24)"><use href="#leaf"/></g>
+      <g transform="translate(830,510) rotate(-76.4) scale(204,16)"><use href="#leaf"/></g>
+    </g>
+  </defs>
+
+  <!-- Base: near-black -->
+  <rect width="1050" height="717" fill="#040404"/>
+
+  <!-- Grey wall region on the right of the diagonal edge -->
+  <g filter="url(#blurL)">
+    <polygon points="715,-40 1100,-40 1100,780 520,780 600,520 575,350 650,190" fill="url(#rightGrey)"/>
+  </g>
+
+  <!-- Darker far-right shadow band -->
+  <g filter="url(#blurXL)">
+    <polygon points="900,-60 1120,-60 1120,780 600,780 740,470 820,230" fill="#101010" opacity="0.85"/>
+  </g>
+
+  <!-- Warm hazy grey glow near top-centre and lower-centre -->
+  <ellipse cx="730" cy="110" rx="140" ry="130" fill="url(#warmHaze)" filter="url(#blurL)"/>
+  <ellipse cx="520" cy="560" rx="150" ry="70" fill="url(#warmHaze)" opacity="0.7" filter="url(#blurL)"/>
+
+  <!-- Bright white light patches -->
+  <g filter="url(#blurM)">
+    <polygon points="742,-10 890,-10 815,140 705,215" fill="#f4f2f0"/>
+    <polygon points="578,350 664,168 700,236 632,302" fill="#fbfaf9"/>
+    <polygon points="372,730 428,612 560,572 598,602 548,730" fill="#f8f7f6"/>
+  </g>
+  <!-- Extra soft bloom over the whites -->
+  <g filter="url(#blurXL)" opacity="0.55">
+    <polygon points="742,-10 890,-10 815,140 705,215" fill="#ffffff"/>
+    <polygon points="578,350 664,168 700,236 632,302" fill="#ffffff"/>
+    <polygon points="372,730 428,612 560,572 598,602 548,730" fill="#ffffff"/>
+  </g>
+
+  <!-- Deep dark mass on the left -->
+  <g filter="url(#blurXL)">
+    <polygon points="-80,-80 700,-80 610,200 470,520 330,800 -80,800" fill="#020202" opacity="0.8"/>
+  </g>
+  <rect width="1050" height="717" fill="url(#leftVignette)"/>
+
+  <!-- Rainbow streaks: wide glow, mid blur, then a softly blurred core -->
+  <g filter="url(#glow)" opacity="0.55" style="mix-blend-mode:screen"><use href="#streaks"/></g>
+  <g filter="url(#blurS)" style="mix-blend-mode:screen"><use href="#streaks"/></g>
+
+  <!-- POEM -->
+  <!-- The outer scale(1.05, 0.717) cancels the viewBox stretch (preserveAspectRatio="none"),
+       so inside this group coordinates behave like a normal 1000x1000 canvas and text is not distorted. -->
+  <g transform="scale(1.05,0.717)">
+    <!-- Soft dark scrim to keep text readable over the bright patches -->
+    <ellipse cx="500" cy="494" rx="400" ry="340" fill="#000" opacity="0.4" filter="url(#blurXL)"/>
+
+    <g font-family="Georgia, 'Times New Roman', serif" fill="#f6f2ec" text-anchor="start" filter="url(#textShadow)">
+      <!-- Title -->
+      <text x="215" y="242" font-size="38" font-weight="bold" letter-spacing="1">Still here</text>
+
+      <!-- Stanza 1 -->
+      <g font-size="22">
+        <text x="215" y="302">Imagine you want something.</text>
+        <text x="215" y="334">Desire it with all your heart.</text>
+        <text x="215" y="366">Don't give up on it.</text>
+        <text x="215" y="398">Remain persistent for as long as it takes.</text>
+        <text x="215" y="430">Try absolutely all you can to attain it.</text>
+        <text x="215" y="462">Walk away when nothing seems to work.</text>
+        <text x="215" y="494">Let go of it and live a life completely in its absence.</text>
+
+        <!-- Stanza 2 -->
+        <text x="215" y="546">Years later, it will be finally within reach...</text>
+        <text x="215" y="578">...but the one who wanted it is gone.</text>
+
+        <!-- Stanza 3 -->
+        <text x="215" y="630">Some arrive not too late to be received,</text>
+        <text x="215" y="662">but too late to mean what they once would have.</text>
+        <text x="215" y="694">Who will you ask why life unfolded this way?</text>
+
+        <!-- Stanza 4 -->
+        <text x="215" y="746" font-weight="bold">So don't walk away. At least the one who wants it is</text>
+        <text x="215" y="778" font-weight="bold">still here.</text>
+      </g>
+    </g>
+  </g>
+</svg>
