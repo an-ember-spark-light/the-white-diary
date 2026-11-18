@@ -171,18 +171,62 @@ body {
     backdrop-filter: blur(14px);
 }
 
+
 .reader.open { display: grid; }
 
-.reader figure { margin: 0; max-width: 34em; }
+.reader figure {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    max-width: 34em;
+}
+
+.reader-scroll {
+    max-height: 78vh;
+    overflow-y: auto;
+    text-align: left;
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;
+    overscroll-behavior: contain;
+}
+.reader-scroll::-webkit-scrollbar { display: none; }
+
+/* fade only while there is more text below */
+.reader.has-more .reader-scroll {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 130px), transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 130px), transparent 100%);
+}
+
+.scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    line-height: 1;
+    color: color-mix(in srgb, var(--rc) 55%, #fff);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.reader.has-more .scroll-hint {
+    opacity: 0.9;
+    animation: hint-bounce 1.6s ease-in-out infinite;
+}
+@keyframes hint-bounce {
+    0%, 100% { transform: translate(-50%, 0); }
+    50%      { transform: translate(-50%, 8px); }
+}
 
 .reader blockquote {
     margin: 0;
     font-family: var(--serif);
-    font-variation-settings: "opsz" 144;
-    font-weight: 300;
-    font-size: clamp(1.5rem, 3.6vw, 2.9rem);
-    line-height: 1.5;
-    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 36;
+    font-weight: 350;
+    font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+    line-height: 1.75;
+    letter-spacing: -0.005em;
+    text-align: left;
     color: color-mix(in srgb, var(--rc) 20%, #fff);
     white-space: pre-line;
 }
@@ -194,6 +238,7 @@ body {
     font-size: 0.85rem;
     color: color-mix(in srgb, var(--rc) 55%, #fff);
     opacity: 0.85;
+    padding-bottom: 8px;
 }
 
 .reader button {
@@ -222,6 +267,36 @@ body {
     .reader .prev, .reader .next { top: auto; bottom: 22px; transform: none; }
 }
 
+.reader-end {
+    display: none;
+    margin-top: clamp(36px, 5vw, 64px);
+    padding-bottom: 12px;
+}
+.reader-end.show { display: block; }
+
+.reader-end hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    margin: 0 0 clamp(24px, 3vw, 36px);
+    background: linear-gradient(to right,
+        color-mix(in srgb, var(--rc) 55%, #fff),
+        transparent);
+    opacity: 0.5;
+}
+
+.reader-end p {
+    margin: 0;
+    font-family: var(--serif);
+    font-variation-settings: "opsz" 36;
+    font-weight: 350;
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+    line-height: 1.7;
+    text-align: left;
+    color: color-mix(in srgb, var(--rc) 20%, #fff);
+    white-space: pre-line;
+}
 
 #svg-container {
     display: grid;
@@ -625,13 +700,20 @@ body {
     </main>
 </div>
 
-<div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Quote">
+<div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Story">
     <button class="close" aria-label="Close">Close</button>
-    <button class="prev" aria-label="Previous quote">‹</button>
-    <button class="next" aria-label="Next quote">›</button>
+    <button class="prev" aria-label="Previous story">‹</button>
+    <button class="next" aria-label="Next story">›</button>
     <figure>
-        <blockquote id="reader-quote"></blockquote>
-        <figcaption><span id="reader-date"></span></figcaption>
+        <div class="reader-scroll" id="reader-scroll">
+            <blockquote id="reader-quote"></blockquote>
+            <figcaption><span id="reader-date"></span></figcaption>
+            <div class="reader-end" id="reader-end">
+                <hr>
+                <p id="reader-end-quote"></p>
+            </div>
+        </div>
+        <div class="scroll-hint" aria-hidden="true">↓</div>
     </figure>
 </div>
 
@@ -729,15 +811,35 @@ function renderQuotes() {
         quotes.length + (quotes.length === 1 ? " experience" : " experiences");
 }
 
+const readerScroll = document.getElementById("reader-scroll");
+
+function updateFade() {
+    const overflowing = readerScroll.scrollHeight > readerScroll.clientHeight + 4;
+    const atEnd = readerScroll.scrollTop + readerScroll.clientHeight >= readerScroll.scrollHeight - 4;
+    reader.classList.toggle("has-more", overflowing && !atEnd);
+}
+
+const readerEnd = document.getElementById("reader-end");
+const readerEndQuote = document.getElementById("reader-end-quote");
+
 function showInReader(i) {
     current = i;
-    readerQuote.textContent = quotes[i].quote;
-    document.getElementById("reader-date").textContent = quotes[i].date;
+    const item = quotes[i];
+    const hasStory = typeof item.story === "string" && item.story.trim().length > 0;
+
+    readerQuote.textContent = hasStory ? item.story : item.quote;
+    document.getElementById("reader-date").textContent = item.date;
+
+    readerEnd.classList.toggle("show", hasStory);
+    readerEndQuote.textContent = hasStory ? "\u201C" + item.quote + "\u201D" : "";
+
+    readerScroll.scrollTop = 0;
+    requestAnimationFrame(updateFade);
 }
 
 function openReader(i) {
-    showInReader(i);
     reader.classList.add("open");
+    showInReader(i);
     body.style.overflow = "hidden";
     reader.querySelector(".close").focus({ preventScroll: true });
 }
@@ -755,6 +857,8 @@ function step(dir) {
 }
 
 reader.querySelector(".close").addEventListener("click", closeReader);
+readerScroll.addEventListener("scroll", updateFade, { passive: true });
+window.addEventListener("resize", updateFade);
 reader.querySelector(".prev").addEventListener("click", e => { e.stopPropagation(); step(-1); });
 reader.querySelector(".next").addEventListener("click", e => { e.stopPropagation(); step(1); });
 reader.addEventListener("click", e => { if (e.target === reader) closeReader(); });
