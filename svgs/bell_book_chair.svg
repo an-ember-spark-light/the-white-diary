@@ -1,0 +1,1392 @@
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 710" width="1260" height="710"> -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -550 1260 1260" width="1000" height="1000">
+  <!-- white background -->
+  <rect x="-10" y="-560" width="1280" height="1280" fill="white"/>
+
+  <!-- poetry-style text -->
+  <text text-anchor="middle" font-family="'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif" font-style="italic" font-size="64" fill="#222">
+    <tspan x="630" y="-340">If you believe in it, open the book.</tspan>
+    <tspan x="630" y="-270">If you open the book, make a wish.</tspan>
+    <tspan x="630" y="-200">If you make a wish, believe in it.</tspan>
+  </text>
+  <defs>
+    <!-- ===================================================================== -->
+    <!-- CLIP PATHS FOR THE 6 PARTS (3 SKIES & 3 LANDS)                        -->
+    <!-- ===================================================================== -->
+
+    <!-- Part 1: Left Panel Sky (extends 2px under horizon contour to avoid seam) -->
+    <clipPath id="clip-panel1-sky">
+      <path d="M 12 12 H 416 V 416 C 340 415, 280 417, 210 415 C 140 413, 80 416, 12 418 Z"/>
+    </clipPath>
+
+    <!-- Part 2: Left Panel Land -->
+    <clipPath id="clip-panel1-land">
+      <path d="M 12 415 C 80 413, 140 410, 210 412 C 280 414, 340 412, 416 413 V 698 H 12 Z"/>
+    </clipPath>
+
+    <!-- Part 3: Middle Panel Sky -->
+    <clipPath id="clip-panel2-sky">
+      <rect x="428" y="12" width="404" height="225"/>
+    </clipPath>
+
+    <!-- Part 4: Middle Panel Land -->
+    <clipPath id="clip-panel2-land">
+      <rect x="428" y="235" width="404" height="463"/>
+    </clipPath>
+
+    <!-- Part 5: Right Panel Sky -->
+    <clipPath id="clip-panel3-sky">
+      <path d="M 844 12 H 1248 V 393 C 1140 408, 1075 421, 1020 421 C 955 421, 900 411, 844 405 Z"/>
+    </clipPath>
+
+    <!-- Part 6: Right Panel Land -->
+    <clipPath id="clip-panel3-land">
+      <path d="M 844 402 C 900 408, 955 418, 1020 418 C 1075 418, 1140 405, 1248 390 V 698 H 844 Z"/>
+    </clipPath>
+
+    <!-- ===================================================================== -->
+    <!-- FILTERS (BLURS, CLOUD TURBULENCE, WHEAT DEPTH & NIGHT DUST)           -->
+    <!-- ===================================================================== -->
+
+    <filter id="blur-soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+    <filter id="blur-med" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <filter id="blur-heavy" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <filter id="blur-xl" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="32"/>
+    </filter>
+
+    <!-- Storm cloud organic turbulence -->
+    <filter id="storm-cloud-wisps" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.022" numOctaves="4" seed="14" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0.26 0 0 0 0.08
+                0.34 0 0 0 0.11
+                0.42 0 0 0 0.16
+                0    0 0 0.72 -0.14"/>
+    </filter>
+    <filter id="storm-cloud-dark" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.016 0.028" numOctaves="4" seed="37" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0.07 0 0 0 0.02
+                0.10 0 0 0 0.03
+                0.14 0 0 0 0.04
+                0    0 0 0.85 -0.22"/>
+    </filter>
+
+    <!-- Moorland coarse grass/peat texture -->
+    <filter id="moor-texture" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.075 0.14" numOctaves="4" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0.16 0 0 0 0.03
+                0.20 0 0 0 0.04
+                0.15 0 0 0 0.03
+                0    0 0 0.65 -0.18"/>
+    </filter>
+
+    <!-- Wheat field vertical fibrous noise (distant & mid-ground DOF) -->
+    <filter id="wheat-vertical-noise-far" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.24 0.032" numOctaves="3" seed="21" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" result="colored"
+        values="0.45 0 0 0 0.62
+                0.38 0 0 0 0.53
+                0.22 0 0 0 0.36
+                0    0 0 0.72 -0.16"/>
+      <feGaussianBlur in="colored" stdDeviation="0.9"/>
+    </filter>
+    <filter id="wheat-vertical-noise-mid" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.14 0.020" numOctaves="3" seed="42" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" result="colored"
+        values="0.50 0 0 0 0.62
+                0.42 0 0 0 0.52
+                0.25 0 0 0 0.33
+                0    0 0 0.80 -0.22"/>
+      <feGaussianBlur in="colored" stdDeviation="0.45"/>
+      </filter>
+    <filter id="wheat-mid-blur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="0.85"/>
+    </filter>
+    <filter id="wheat-near-bokeh" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+
+    <!-- Milky Way cosmic dust turbulence -->
+    <filter id="milkyway-dust" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018 0.026" numOctaves="5" seed="88" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" result="dust"
+        values="0.55 0 0 0 0.42
+                0.55 0 0 0 0.44
+                0.62 0 0 0 0.52
+                0    0 0 1.0 -0.30"/>
+      <feGaussianBlur in="dust" stdDeviation="2.6"/>
+    </filter>
+
+    <!-- Night meadow grass texture -->
+    <filter id="meadow-texture" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.085 0.15" numOctaves="4" seed="19" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0.16 0 0 0 0.04
+                0.22 0 0 0 0.05
+                0.15 0 0 0 0.04
+                0    0 0 0.65 -0.18"/>
+    </filter>
+
+    <!-- ===================================================================== -->
+    <!-- GRADIENTS                                                             -->
+    <!-- ===================================================================== -->
+
+    <!-- Panel 1 Sky -->
+    <linearGradient id="grad-p1-sky" x1="0" y1="12" x2="0" y2="418" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b1116"/>
+      <stop offset="32%" stop-color="#131d25"/>
+      <stop offset="60%" stop-color="#22323e"/>
+      <stop offset="86%" stop-color="#293a46"/>
+      <stop offset="100%" stop-color="#1f2d37"/>
+    </linearGradient>
+    <radialGradient id="grad-p1-clearing" cx="62%" cy="48%" r="48%">
+      <stop offset="0%" stop-color="#6b8391" stop-opacity="0.72"/>
+      <stop offset="45%" stop-color="#485d6b" stop-opacity="0.42"/>
+      <stop offset="100%" stop-color="#22313c" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Panel 1 Land -->
+    <linearGradient id="grad-p1-ridge2" x1="0" y1="425" x2="0" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#212a24"/>
+      <stop offset="100%" stop-color="#111714"/>
+    </linearGradient>
+    <linearGradient id="grad-p1-ridge3" x1="0" y1="455" x2="0" y2="555" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#262f26"/>
+      <stop offset="55%" stop-color="#1a211b"/>
+      <stop offset="100%" stop-color="#101511"/>
+    </linearGradient>
+    <linearGradient id="grad-p1-fg" x1="0" y1="535" x2="0" y2="698" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#222a21"/>
+      <stop offset="40%" stop-color="#181f18"/>
+      <stop offset="100%" stop-color="#0c100c"/>
+    </linearGradient>
+
+    <!-- Panel 2 Sky -->
+    <linearGradient id="grad-p2-sky" x1="0" y1="12" x2="0" y2="237" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#c6dbe8"/>
+      <stop offset="40%" stop-color="#d5e4ed"/>
+      <stop offset="76%" stop-color="#e3ebee"/>
+      <stop offset="100%" stop-color="#eaeae4"/>
+    </linearGradient>
+
+    <!-- Panel 2 Land (Wheat Field) -->
+    <linearGradient id="grad-p2-field" x1="0" y1="235" x2="0" y2="698" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#e8dcc0"/>
+      <stop offset="16%"  stop-color="#ddc9a0"/>
+      <stop offset="35%"  stop-color="#d0b784"/>
+      <stop offset="58%"  stop-color="#bf9f68"/>
+      <stop offset="80%"  stop-color="#a88a52"/>
+      <stop offset="100%" stop-color="#8a6f40"/>
+    </linearGradient>
+
+    <!-- Panel 3 Sky -->
+    <linearGradient id="grad-p3-sky" x1="0" y1="12" x2="0" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#03060a"/>
+      <stop offset="25%"  stop-color="#080e16"/>
+      <stop offset="50%"  stop-color="#121c29"/>
+      <stop offset="72%"  stop-color="#243445"/>
+      <stop offset="88%"  stop-color="#3f566a"/>
+      <stop offset="100%" stop-color="#5a7388"/>
+    </linearGradient>
+    <radialGradient id="grad-p3-mw-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a29795" stop-opacity="0.45"/>
+      <stop offset="45%" stop-color="#6b7a8c" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#16212c" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Panel 3 Land -->
+    <linearGradient id="grad-p3-hill-back" x1="0" y1="390" x2="0" y2="510" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#141d14"/>
+      <stop offset="55%"  stop-color="#0e150e"/>
+      <stop offset="100%" stop-color="#080c08"/>
+    </linearGradient>
+
+    <!-- Front land: lightest under the chair, darker the further away -->
+    <radialGradient id="grad-p3-fg" cx="1046" cy="590" r="340" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(1046 590) scale(1 0.62) translate(-1046 -590)">
+      <stop offset="0%"   stop-color="#33422f"/>
+      <stop offset="30%"  stop-color="#222d20"/>
+      <stop offset="65%"  stop-color="#10170f"/>
+      <stop offset="100%" stop-color="#040604"/>
+    </radialGradient>
+    
+
+    <!-- ===================================================================== -->
+    <!-- MASKS                                                                 -->
+    <!-- ===================================================================== -->
+
+    <!-- Wheat depth transition masks -->
+    <linearGradient id="mask-grad-far" x1="0" y1="235" x2="0" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#b8b8b8"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <mask id="mask-p2-far-fade" maskUnits="userSpaceOnUse" x="428" y="235" width="404" height="463">
+      <rect x="428" y="235" width="404" height="463" fill="url(#mask-grad-far)"/>
+    </mask>
+
+    <linearGradient id="mask-grad-mid" x1="0" y1="295" x2="0" y2="425" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <mask id="mask-p2-mid-wheat" maskUnits="userSpaceOnUse" x="428" y="235" width="404" height="463">
+      <rect x="428" y="235" width="404" height="190" fill="url(#mask-grad-mid)"/>
+      <rect x="428" y="425" width="404" height="273" fill="#ffffff"/>
+    </mask>
+
+    <linearGradient id="mask-grad-fg" x1="0" y1="395" x2="0" y2="525" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#000000"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <mask id="mask-p2-fg-wheat" maskUnits="userSpaceOnUse" x="428" y="235" width="404" height="463">
+      <rect x="428" y="235" width="404" height="290" fill="url(#mask-grad-fg)"/>
+      <rect x="428" y="525" width="404" height="173" fill="#ffffff"/>
+    </mask>
+
+    <!-- Milky Way nebula and star density masks -->
+    <mask id="mask-milkyway" maskUnits="userSpaceOnUse" x="844" y="12" width="404" height="410">
+      <rect x="844" y="12" width="404" height="410" fill="#000000"/>
+      <path d="M 960 -10 C 995 100, 1040 225, 1092 415" stroke="#ffffff" stroke-width="130" stroke-linecap="round" fill="none" filter="url(#blur-xl)" opacity="0.9"/>
+      <path d="M 990 60 C 1018 150, 1050 240, 1080 360" stroke="#ffffff" stroke-width="70" stroke-linecap="round" fill="none" filter="url(#blur-heavy)"/>
+    </mask>
+
+    <mask id="mask-milkyway-stars" maskUnits="userSpaceOnUse" x="844" y="12" width="404" height="410">
+      <rect x="844" y="12" width="404" height="410" fill="#000000"/>
+      <path d="M 965 -5 C 1000 105, 1045 230, 1095 410" stroke="#ffffff" stroke-width="105" stroke-linecap="round" fill="none" filter="url(#blur-heavy)"/>
+    </mask>
+
+    <!-- ===================================================================== -->
+    <!-- REUSABLE BOTANICAL WHEAT MODULES (NO ONE-BY-ONE STRAND DRAWING)       -->
+    <!-- ===================================================================== -->
+
+    <!-- Master Sunlit Golden Wheat Ear (origin 0,0 at base of head, grows up to -88) -->
+    <g id="wheat-ear-gold">
+      <!-- Delicate needle awns / bristles -->
+      <g stroke="#efe2c3" stroke-width="0.45" fill="none" opacity="0.78">
+        <path d="M -2 -10 Q -6 -32, -8 -58"/>
+        <path d="M 2 -12 Q 6 -34, 8 -60"/>
+        <path d="M -3 -20 Q -7 -45, -7 -68"/>
+        <path d="M 3 -22 Q 7 -47, 7 -70"/>
+        <path d="M -2 -32 Q -6 -55, -5 -76"/>
+        <path d="M 2 -34 Q 6 -57, 5 -78"/>
+        <path d="M -2 -44 Q -4 -66, -3 -84"/>
+        <path d="M 2 -46 Q 4 -68, 3 -85"/>
+        <path d="M 0 -55 Q 0 -74, 0 -89"/>
+      </g>
+      <!-- Central rachis stem -->
+      <line x1="0" y1="3" x2="0" y2="-56" stroke="#9e8253" stroke-width="1.35"/>
+      <!-- Braided alternating golden spikelets (kernels) -->
+      <g>
+        <!-- Left & Right kernel pairs ascending -->
+        <path d="M -0.5 -2 C -4.5 -4, -5 -10, -1.5 -12.5 C 0.8 -10, 1.2 -5, -0.5 -2 Z" fill="#cfb381"/>
+        <path d="M 0.5 -4 C 4.5 -6, 5 -12, 1.5 -14.5 C -0.8 -12, -1.2 -7, 0.5 -4 Z" fill="#c1a26f"/>
+        <path d="M -0.5 -8 C -5 -10, -5.5 -16, -1.6 -18.5 C 0.9 -16, 1.3 -11, -0.5 -8 Z" fill="#dec698"/>
+        <path d="M 0.5 -10 C 5 -12, 5.5 -18, 1.6 -20.5 C -0.9 -18, -1.3 -13, 0.5 -10 Z" fill="#cbb07c"/>
+        <path d="M -0.5 -14 C -5.2 -16, -5.8 -22.5, -1.6 -25 C 1 -22.5, 1.4 -17, -0.5 -14 Z" fill="#e5d0a6"/>
+        <path d="M 0.5 -16 C 5.2 -18, 5.8 -24.5, 1.6 -27 C -1 -24.5, -1.4 -19, 0.5 -16 Z" fill="#cfb380"/>
+        <path d="M -0.5 -20 C -5.2 -22, -5.8 -28.5, -1.6 -31 C 1 -28.5, 1.4 -23, -0.5 -20 Z" fill="#ead8b1"/>
+        <path d="M 0.5 -22 C 5.2 -24, 5.8 -30.5, 1.6 -33 C -1 -30.5, -1.4 -25, 0.5 -22 Z" fill="#d3b784"/>
+        <path d="M -0.5 -26 C -5 -28, -5.4 -34.5, -1.5 -37 C 0.9 -34.5, 1.3 -29, -0.5 -26 Z" fill="#ebd9b4"/>
+        <path d="M 0.5 -28 C 5 -30, 5.4 -36.5, 1.5 -39 C -0.9 -36.5, -1.3 -31, 0.5 -28 Z" fill="#d4b986"/>
+        <path d="M -0.5 -32 C -4.8 -34, -5 -40, -1.4 -42.5 C 0.8 -40, 1.2 -35, -0.5 -32 Z" fill="#e6d1a7"/>
+        <path d="M 0.5 -34 C 4.8 -36, 5 -42, 1.4 -44.5 C -0.8 -42, -1.2 -37, 0.5 -34 Z" fill="#ccb07d"/>
+        <path d="M -0.4 -38 C -4.2 -40, -4.5 -46, -1.2 -48.5 C 0.7 -46, 1 -41, -0.4 -38 Z" fill="#e3cca0"/>
+        <path d="M 0.4 -40 C 4.2 -42, 4.5 -48, 1.2 -50.5 C -0.7 -48, -1 -43, 0.4 -40 Z" fill="#c7aa77"/>
+        <path d="M -0.3 -44 C -3.6 -46, -3.8 -51.5, -1 -53.8 C 0.6 -51.5, 0.9 -47, -0.3 -44 Z" fill="#dec699"/>
+        <path d="M 0.3 -46 C 3.6 -48, 3.8 -53.5, 1 -55.8 C -0.6 -53.5, -0.9 -49, 0.3 -46 Z" fill="#c3a572"/>
+        <path d="M 0 -51 C -2.4 -53, -2.2 -58, 0 -61 C 2.2 -58, 2.4 -53, 0 -51 Z" fill="#e6d2aa"/>
+      </g>
+      <!-- Subtle kernel crease shadow accents -->
+      <path d="M -1 -8 L 0.5 -10 M -1 -14 L 0.5 -16 M -1 -20 L 0.5 -22 M -1 -26 L 0.5 -28 M -1 -32 L 0.5 -34 M -1 -38 L 0.5 -40 M -1 -44 L 0.5 -46"
+            stroke="#8c7146" stroke-width="0.6" opacity="0.65"/>
+    </g>
+
+    <!-- Shaded Background/Understory Wheat Ear -->
+    <g id="wheat-ear-shadow">
+      <g stroke="#baa57f" stroke-width="0.45" fill="none" opacity="0.6">
+        <path d="M -2 -10 Q -5 -32, -7 -57"/>
+        <path d="M 2 -12 Q 5 -34, 7 -58"/>
+        <path d="M -2 -26 Q -5 -50, -5 -73"/>
+        <path d="M 2 -28 Q 5 -52, 5 -74"/>
+        <path d="M 0 -46 Q 0 -68, 0 -86"/>
+      </g>
+      <line x1="0" y1="3" x2="0" y2="-54" stroke="#8f7a55" stroke-width="1.3"/>
+      <g>
+        <path d="M -0.5 -2 C -4.4 -4, -4.8 -10, -1.4 -12.5 C 0.8 -10, 1.2 -5, -0.5 -2 Z" fill="#bba37a"/>
+        <path d="M 0.5 -4 C 4.4 -6, 4.8 -12, 1.4 -14.5 C -0.8 -12, -1.2 -7, 0.5 -4 Z" fill="#a68f65"/>
+        <path d="M -0.5 -9 C -4.8 -11, -5.2 -17, -1.5 -19.5 C 0.9 -17, 1.3 -12, -0.5 -9 Z" fill="#c8b085"/>
+        <path d="M 0.5 -11 C 4.8 -13, 5.2 -19, 1.5 -21.5 C -0.9 -19, -1.3 -14, 0.5 -11 Z" fill="#b39a70"/>
+        <path d="M -0.5 -16 C -4.9 -18, -5.3 -24, -1.5 -26.5 C 0.9 -24, 1.3 -19, -0.5 -16 Z" fill="#d0b98e"/>
+        <path d="M 0.5 -18 C 4.9 -20, 5.3 -26, 1.5 -28.5 C -0.9 -26, -1.3 -21, 0.5 -18 Z" fill="#b8a077"/>
+        <path d="M -0.5 -23 C -4.8 -25, -5.2 -31, -1.5 -33.5 C 0.9 -31, 1.3 -26, -0.5 -23 Z" fill="#d4bd93"/>
+        <path d="M 0.5 -25 C 4.8 -27, 5.2 -33, 1.5 -35.5 C -0.9 -33, -1.3 -28, 0.5 -25 Z" fill="#bba27a"/>
+        <path d="M -0.5 -30 C -4.5 -32, -4.8 -38, -1.4 -40.5 C 0.8 -38, 1.2 -33, -0.5 -30 Z" fill="#ccb48a"/>
+        <path d="M 0.5 -32 C 4.5 -34, 4.8 -40, 1.4 -42.5 C -0.8 -40, -1.2 -35, 0.5 -32 Z" fill="#b09769"/>
+        <path d="M -0.4 -37 C -4 -39, -4.2 -45, -1.2 -47.5 C 0.7 -45, 1 -40, -0.4 -37 Z" fill="#c4ab80"/>
+        <path d="M 0.4 -39 C 4 -41, 4.2 -47, 1.2 -49.5 C -0.7 -47, -1 -42, 0.4 -39 Z" fill="#a99163"/>
+        <path d="M 0 -46 C -2.4 -48, -2.2 -54, 0 -57 C 2.2 -54, 2.4 -48, 0 -46 Z" fill="#ceb78e"/>
+      </g>
+    </g>
+
+    <!-- Cluster A: 3 upright graceful sunlit wheat stalks (base 0,0) -->
+    <g id="wheat-cluster-a">
+      <!-- Stems -->
+      <path d="M -7 2 Q -12 -65, -22 -128" stroke="#bda16f" stroke-width="1.65" fill="none"/>
+      <path d="M 0 2 Q 2 -80, 5 -152" stroke="#bda06e" stroke-width="1.8" fill="none"/>
+      <path d="M 8 2 Q 16 -58, 25 -116" stroke="#b79c6b" stroke-width="1.55" fill="none"/>
+      <!-- Slender leaves -->
+      <path d="M -9 -32 Q -28 -62, -40 -52 Q -25 -72, -10 -46 Z" fill="#8e754a" opacity="0.9"/>
+      <path d="M 4 -42 Q 22 -72, 34 -64 Q 20 -82, 5 -54 Z" fill="#a5895a" opacity="0.88"/>
+      <!-- Wheat Heads -->
+      <use href="#wheat-ear-gold" transform="translate(-22,-128) rotate(-11) scale(0.92)"/>
+      <use href="#wheat-ear-gold" transform="translate(5,-152) rotate(4) scale(1.0)"/>
+      <use href="#wheat-ear-shadow" transform="translate(25,-116) rotate(13) scale(0.88)"/>
+    </g>
+
+    <!-- Cluster B: 4 dense swaying crossing stalks -->
+    <g id="wheat-cluster-b">
+      <path d="M -12 2 Q -18 -54, -30 -106" stroke="#a88d5c" stroke-width="1.5" fill="none"/>
+      <path d="M -4 2 Q -1 -74, -8 -144" stroke="#b09362" stroke-width="1.7" fill="none"/>
+      <path d="M 4 2 Q 12 -82, 16 -166" stroke="#c3a673" stroke-width="1.8" fill="none"/>
+      <path d="M 11 2 Q 20 -62, 31 -122" stroke="#ae9463" stroke-width="1.55" fill="none"/>
+      <path d="M -2 -26 Q -24 -52, -32 -42 Q -18 -64, -3 -38 Z" fill="#7c633c" opacity="0.85"/>
+      <path d="M 6 -58 Q -12 -92, -24 -86 Q -10 -102, 7 -72 Z" fill="#ab8e5d" opacity="0.85"/>
+      <use href="#wheat-ear-shadow" transform="translate(-30,-106) rotate(-16) scale(0.84)"/>
+      <use href="#wheat-ear-shadow" transform="translate(-8,-144) rotate(-6) scale(0.95)"/>
+      <use href="#wheat-ear-gold" transform="translate(16,-166) rotate(7) scale(0.98)"/>
+      <use href="#wheat-ear-gold" transform="translate(31,-122) rotate(15) scale(0.9)"/>
+    </g>
+
+    <!-- Cluster C: 2 tall sweeping foreground stalks -->
+    <g id="wheat-cluster-c">
+      <path d="M -5 4 Q -6 -85, -18 -172" stroke="#b99c6b" stroke-width="2.1" fill="none"/>
+      <path d="M 6 4 Q 14 -72, 22 -148" stroke="#b99d6c" stroke-width="1.9" fill="none"/>
+      <path d="M -7 -48 Q -32 -84, -44 -72 Q -27 -96, -8 -62 Z" fill="#9c8051" opacity="0.9"/>
+      <use href="#wheat-ear-gold" transform="translate(-18,-172) rotate(-9) scale(1.12)"/>
+      <use href="#wheat-ear-shadow" transform="translate(22,-148) rotate(11) scale(1.02)"/>
+    </g>
+
+    <!-- ===================================================================== -->
+    <!-- COPRIME SEAMLESS PATTERNS (WHEAT & NIGHT STARS)                       -->
+    <!-- ===================================================================== -->
+
+    <!-- Mid-field shaded wheat pattern (137x165, tilted -4 deg) -->
+    <pattern id="pat-wheat-mid-dark" width="137" height="165" patternUnits="userSpaceOnUse" patternTransform="rotate(-4)">
+      <g stroke="#78603b" stroke-width="1.2" fill="none" opacity="0.72">
+        <path d="M 14 168 Q 16 115, 19 65"/>
+        <path d="M 38 168 Q 35 120, 32 78"/>
+        <path d="M 64 168 Q 67 110, 70 54"/>
+        <path d="M 92 168 Q 88 125, 85 84"/>
+        <path d="M 118 168 Q 121 115, 124 66"/>
+        <path d="M 50 168 Q 52 135, 55 98"/>
+        <path d="M 105 168 Q 103 130, 101 92"/>
+      </g>
+      <use href="#wheat-ear-shadow" transform="translate(19,65) rotate(4) scale(0.58)"/>
+      <use href="#wheat-ear-shadow" transform="translate(32,78) rotate(-5) scale(0.54)"/>
+      <use href="#wheat-ear-shadow" transform="translate(70,54) rotate(5) scale(0.62)"/>
+      <use href="#wheat-ear-shadow" transform="translate(85,84) rotate(-6) scale(0.56)"/>
+      <use href="#wheat-ear-shadow" transform="translate(124,66) rotate(4) scale(0.60)"/>
+      <use href="#wheat-ear-shadow" transform="translate(55,112) rotate(3) scale(0.55)"/>
+      <use href="#wheat-ear-shadow" transform="translate(101,126) rotate(-4) scale(0.58)"/>
+    </pattern>
+
+    <!-- Mid-field sunlit wheat pattern (163x191, tilted +3.5 deg) -->
+    <pattern id="pat-wheat-mid-light" width="163" height="191" patternUnits="userSpaceOnUse" patternTransform="rotate(3.5)">
+      <g stroke="#c6ab79" stroke-width="1.25" fill="none" opacity="0.78">
+        <path d="M 22 194 Q 20 130, 17 72"/>
+        <path d="M 48 194 Q 52 136, 56 84"/>
+        <path d="M 78 194 Q 75 122, 73 56"/>
+        <path d="M 106 194 Q 110 134, 114 76"/>
+        <path d="M 138 194 Q 134 128, 131 64"/>
+        <path d="M 152 194 Q 155 142, 158 95"/>
+      </g>
+      <use href="#wheat-ear-gold" transform="translate(17,72) rotate(-5) scale(0.62)"/>
+      <use href="#wheat-ear-gold" transform="translate(56,84) rotate(6) scale(0.58)"/>
+      <use href="#wheat-ear-gold" transform="translate(73,56) rotate(-3) scale(0.64)"/>
+      <use href="#wheat-ear-gold" transform="translate(114,76) rotate(5) scale(0.60)"/>
+      <use href="#wheat-ear-gold" transform="translate(131,64) rotate(-6) scale(0.65)"/>
+      <use href="#wheat-ear-gold" transform="translate(158,108) rotate(5) scale(0.56)"/>
+      <use href="#wheat-ear-gold" transform="translate(92,135) rotate(-4) scale(0.60)"/>
+    </pattern>
+
+    <!-- Foreground dark understory wheat pattern (151x211, tilted +2.5 deg) -->
+    <pattern id="pat-wheat-fg-shadow" width="151" height="211" patternUnits="userSpaceOnUse" patternTransform="rotate(2.5)">
+      <g stroke="#5e4a2c" stroke-width="1.7" fill="none" opacity="0.72">
+        <path d="M 16 215 Q 20 140, 24 72"/>
+        <path d="M 44 215 Q 40 145, 36 86"/>
+        <path d="M 72 215 Q 76 135, 80 64"/>
+        <path d="M 102 215 Q 98 148, 94 92"/>
+        <path d="M 132 215 Q 135 138, 139 74"/>
+      </g>
+      <use href="#wheat-ear-shadow" transform="translate(24,72) rotate(5) scale(0.76)"/>
+      <use href="#wheat-ear-shadow" transform="translate(36,96) rotate(-6) scale(0.74)"/>
+      <use href="#wheat-ear-shadow" transform="translate(80,64) rotate(6) scale(0.80)"/>
+      <use href="#wheat-ear-shadow" transform="translate(94,110) rotate(-5) scale(0.78)"/>
+      <use href="#wheat-ear-shadow" transform="translate(139,74) rotate(4) scale(0.76)"/>
+    </pattern>
+
+    <!-- Foreground golden wheat pattern (179x229, tilted -3 deg) -->
+    <pattern id="pat-wheat-fg-gold" width="179" height="229" patternUnits="userSpaceOnUse" patternTransform="rotate(-3)">
+      <g stroke="#b89a67" stroke-width="1.65" fill="none" opacity="0.8">
+        <path d="M 28 232 Q 24 150, 20 82"/>
+        <path d="M 62 232 Q 67 156, 72 94"/>
+        <path d="M 98 232 Q 94 146, 89 72"/>
+        <path d="M 134 232 Q 138 158, 143 88"/>
+        <path d="M 164 232 Q 160 164, 156 106"/>
+      </g>
+      <use href="#wheat-ear-gold" transform="translate(20,82) rotate(-5) scale(0.80)"/>
+      <use href="#wheat-ear-gold" transform="translate(72,94) rotate(6) scale(0.76)"/>
+      <use href="#wheat-ear-gold" transform="translate(89,72) rotate(-4) scale(0.84)"/>
+      <use href="#wheat-ear-gold" transform="translate(143,88) rotate(5) scale(0.78)"/>
+      <use href="#wheat-ear-gold" transform="translate(156,120) rotate(-6) scale(0.75)"/>
+      <use href="#wheat-ear-gold" transform="translate(46,158) rotate(4) scale(0.74)"/>
+    </pattern>
+
+    <!-- Night sky coprime star patterns -->
+    <pattern id="pat-stars-fine" width="113" height="127" patternUnits="userSpaceOnUse" patternTransform="rotate(11)">
+      <circle cx="12" cy="18" r="0.45" fill="#ffffff" opacity="0.55"/>
+      <circle cx="29" cy="9" r="0.38" fill="#d5e5ff" opacity="0.45"/>
+      <circle cx="47" cy="24" r="0.55" fill="#ffffff" opacity="0.68"/>
+      <circle cx="68" cy="14" r="0.40" fill="#ffe8d0" opacity="0.48"/>
+      <circle cx="91" cy="21" r="0.50" fill="#d8e8ff" opacity="0.62"/>
+      <circle cx="105" cy="8" r="0.35" fill="#ffffff" opacity="0.40"/>
+      <circle cx="19" cy="43" r="0.52" fill="#d0e2ff" opacity="0.58"/>
+      <circle cx="38" cy="51" r="0.38" fill="#ffffff" opacity="0.42"/>
+      <circle cx="59" cy="40" r="0.48" fill="#ffffff" opacity="0.65"/>
+      <circle cx="81" cy="48" r="0.35" fill="#d9e7ff" opacity="0.38"/>
+      <circle cx="99" cy="56" r="0.58" fill="#ffffff" opacity="0.72"/>
+      <circle cx="8" cy="69" r="0.42" fill="#ffe8cf" opacity="0.50"/>
+      <circle cx="31" cy="76" r="0.50" fill="#ffffff" opacity="0.62"/>
+      <circle cx="53" cy="67" r="0.36" fill="#cfe2ff" opacity="0.45"/>
+      <circle cx="74" cy="79" r="0.55" fill="#ffffff" opacity="0.70"/>
+      <circle cx="93" cy="85" r="0.40" fill="#ffffff" opacity="0.48"/>
+      <circle cx="108" cy="73" r="0.46" fill="#d8e7ff" opacity="0.55"/>
+      <circle cx="16" cy="98" r="0.58" fill="#ffffff" opacity="0.75"/>
+      <circle cx="41" cy="106" r="0.38" fill="#d6e6ff" opacity="0.42"/>
+      <circle cx="63" cy="95" r="0.48" fill="#ffffff" opacity="0.58"/>
+      <circle cx="84" cy="109" r="0.52" fill="#ffe9d2" opacity="0.65"/>
+      <circle cx="102" cy="116" r="0.40" fill="#ffffff" opacity="0.48"/>
+      <circle cx="25" cy="119" r="0.45" fill="#ffffff" opacity="0.52"/>
+      <circle cx="51" cy="121" r="0.55" fill="#cfe1ff" opacity="0.68"/>
+      <circle cx="71" cy="117" r="0.36" fill="#ffffff" opacity="0.38"/>
+    </pattern>
+
+    <pattern id="pat-stars-med" width="157" height="139" patternUnits="userSpaceOnUse" patternTransform="rotate(-17)">
+      <circle cx="22" cy="19" r="0.72" fill="#ffffff" opacity="0.82"/>
+      <circle cx="67" cy="28" r="0.62" fill="#cfe4ff" opacity="0.72"/>
+      <circle cx="118" cy="15" r="0.80" fill="#ffffff" opacity="0.88"/>
+      <circle cx="142" cy="44" r="0.58" fill="#ffe7cc" opacity="0.68"/>
+      <circle cx="41" cy="61" r="0.75" fill="#d9e8ff" opacity="0.85"/>
+      <circle cx="94" cy="54" r="0.65" fill="#ffffff" opacity="0.74"/>
+      <circle cx="131" cy="79" r="0.78" fill="#ffffff" opacity="0.86"/>
+      <circle cx="15" cy="96" r="0.60" fill="#d3e5ff" opacity="0.65"/>
+      <circle cx="76" cy="99" r="0.82" fill="#ffffff" opacity="0.90"/>
+      <circle cx="112" cy="112" r="0.64" fill="#ffe9d0" opacity="0.72"/>
+      <circle cx="48" cy="124" r="0.70" fill="#ffffff" opacity="0.78"/>
+      <circle cx="145" cy="128" r="0.62" fill="#cfe2ff" opacity="0.70"/>
+    </pattern>
+
+    <pattern id="pat-stars-mw" width="79" height="83" patternUnits="userSpaceOnUse" patternTransform="rotate(29)">
+      <circle cx="9" cy="11" r="0.38" fill="#ffffff" opacity="0.55"/>
+      <circle cx="24" cy="7" r="0.32" fill="#d7e6ff" opacity="0.48"/>
+      <circle cx="41" cy="15" r="0.45" fill="#ffffff" opacity="0.68"/>
+      <circle cx="59" cy="9" r="0.35" fill="#ffe6cd" opacity="0.52"/>
+      <circle cx="71" cy="22" r="0.40" fill="#ffffff" opacity="0.60"/>
+      <circle cx="16" cy="29" r="0.48" fill="#cfe3ff" opacity="0.72"/>
+      <circle cx="34" cy="33" r="0.32" fill="#ffffff" opacity="0.45"/>
+      <circle cx="52" cy="28" r="0.42" fill="#ffffff" opacity="0.62"/>
+      <circle cx="67" cy="41" r="0.36" fill="#d9e7ff" opacity="0.50"/>
+      <circle cx="8" cy="49" r="0.44" fill="#ffffff" opacity="0.65"/>
+      <circle cx="27" cy="52" r="0.35" fill="#ffe9d2" opacity="0.48"/>
+      <circle cx="46" cy="48" r="0.48" fill="#ffffff" opacity="0.70"/>
+      <circle cx="61" cy="59" r="0.34" fill="#d5e5ff" opacity="0.46"/>
+      <circle cx="19" cy="68" r="0.40" fill="#ffffff" opacity="0.58"/>
+      <circle cx="38" cy="72" r="0.46" fill="#ffffff" opacity="0.66"/>
+      <circle cx="56" cy="76" r="0.35" fill="#cfe2ff" opacity="0.50"/>
+      <circle cx="74" cy="69" r="0.42" fill="#ffffff" opacity="0.62"/>
+    </pattern>
+
+    <!-- Subtle foreground nocturnal grass-tuft pattern for Panel 3 -->
+    <pattern id="pat-night-grass" width="97" height="89" patternUnits="userSpaceOnUse">
+      <g stroke="#2c372a" stroke-width="0.9" fill="none" opacity="0.45">
+        <path d="M 12 42 Q 10 34, 7 29 M 12 42 Q 13 33, 15 28 M 12 42 Q 16 35, 19 32"/>
+        <path d="M 48 25 Q 45 18, 43 13 M 48 25 Q 50 17, 52 12"/>
+        <path d="M 76 62 Q 74 54, 71 50 M 76 62 Q 78 53, 81 49 M 76 62 Q 80 56, 84 53"/>
+        <path d="M 28 78 Q 25 70, 22 66 M 28 78 Q 30 69, 32 65"/>
+        <path d="M 86 22 Q 84 15, 81 11 M 86 22 Q 88 15, 91 12"/>
+      </g>
+    </pattern>
+    <!-- ===================================================================== -->
+    <!-- FOREGROUND OBJECTS: CLIP PATHS, FILTERS & GRADIENTS                   -->
+    <!-- ===================================================================== -->
+
+    <clipPath id="clip-panel1-full"><rect x="12" y="12" width="404" height="686"/></clipPath>
+    <clipPath id="clip-panel2-full"><rect x="428" y="12" width="404" height="686"/></clipPath>
+    <clipPath id="clip-panel3-full"><rect x="844" y="12" width="404" height="686"/></clipPath>
+
+    <!-- Local geometry clip paths for crisp surface textures -->
+    <clipPath id="obj-clip-post">
+      <path d="M 16 74 Q 32 71, 47 75 L 48 698 H 16 Z"/>
+    </clipPath>
+    <clipPath id="obj-clip-beam">
+      <path d="M 12 125 L 152 123 L 155 139 L 152 159 L 12 161 Z"/>
+    </clipPath>
+    <clipPath id="obj-clip-bell">
+      <path d="M -14 14 C -24 22, -23 40, -29 56 C -34 68, -42 75, -45 81 C -46 84, -42 86, -34 88 C -12 91, 14 91, 35 88 C 43 86, 46 83, 44 80 C 40 74, 32 67, 27 55 C 21 39, 22 21, 12 14 Z"/>
+    </clipPath>
+    <clipPath id="obj-clip-plank">
+      <path d="M 426 490 C 510 488, 610 490, 710 487 C 765 486, 805 488, 834 489 V 567 C 765 568, 650 571, 555 569 C 490 568, 450 567, 426 568 Z"/>
+    </clipPath>
+    <clipPath id="obj-clip-book-cover">
+      <path d="M 552 487 L 641 456 L 714 475 L 629 518 Z"/>
+    </clipPath>
+    <clipPath id="obj-clip-book-pages">
+      <path d="M 629 518 L 714 475 L 713 496 L 629 540 Z"/>
+    </clipPath>
+
+    <!-- Realistic Surface Filters -->
+    <filter id="obj-shadow-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5"/>
+    </filter>
+    <filter id="obj-shadow-xs" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.4"/>
+    </filter>
+
+    <!-- Vertical weathered wood grain (post & chair legs/stiles) -->
+    <filter id="obj-wood-v" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.24 0.016" numOctaves="4" seed="5" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0.28 0 0 0 0.05
+                0.26 0 0 0 0.05
+                0.22 0 0 0 0.04
+                0    0 0 0.72 -0.18"/>
+    </filter>
+
+    <!-- Horizontal weathered wood grain (crossbeam, plank & chair seat) -->
+    <filter id="obj-wood-h" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.015 0.22" numOctaves="4" seed="11" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0.34 0 0 0 0.07
+                0.30 0 0 0 0.06
+                0.24 0 0 0 0.04
+                0    0 0 0.75 -0.18"/>
+    </filter>
+
+    <!-- Tarnished antique bronze patina -->
+    <filter id="obj-bell-patina" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.09 0.09" numOctaves="4" seed="31" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0.30 0 0 0 0.05
+                0.26 0 0 0 0.04
+                0.16 0 0 0 0.02
+                0    0 0 0.65 -0.20"/>
+    </filter>
+
+    <!-- Aged paper foxing & matte linen bookcloth texture -->
+    <filter id="obj-paper-grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.14 0.45" numOctaves="3" seed="23" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0.40 0 0 0 0.16
+                0.32 0 0 0 0.12
+                0.18 0 0 0 0.07
+                0    0 0 0.50 -0.15"/>
+    </filter>
+    <filter id="obj-linen-grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.38 0.38" numOctaves="3" seed="17" result="n"/>
+      <feColorMatrix in="n" type="matrix"
+        values="0.20 0 0 0 0.62
+                0.20 0 0 0 0.62
+                0.19 0 0 0 0.60
+                0    0 0 0.38 -0.14"/>
+    </filter>
+
+    <!-- Bell & Wood Stand Gradients -->
+    <linearGradient id="obj-grad-post" x1="16" y1="0" x2="48" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#191a18"/>
+      <stop offset="32%" stop-color="#292a26"/>
+      <stop offset="72%" stop-color="#353631"/>
+      <stop offset="92%" stop-color="#454842"/>
+      <stop offset="100%" stop-color="#222421"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-beam" x1="0" y1="123" x2="0" y2="161" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3c3f3b"/>
+      <stop offset="20%" stop-color="#2c2d29"/>
+      <stop offset="72%" stop-color="#1c1d1a"/>
+      <stop offset="100%" stop-color="#10110f"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-bell-body" x1="-45" y1="0" x2="45" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4e442c"/>
+      <stop offset="18%" stop-color="#8b7950"/>
+      <stop offset="34%" stop-color="#6d5e3c"/>
+      <stop offset="58%" stop-color="#3a3322"/>
+      <stop offset="82%" stop-color="#1d1a12"/>
+      <stop offset="100%" stop-color="#0f0e0a"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-bell-vert" x1="0" y1="12" x2="0" y2="90" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b7a52" stop-opacity="0.35"/>
+      <stop offset="35%" stop-color="#3b3423" stop-opacity="0.1"/>
+      <stop offset="78%" stop-color="#14120c" stop-opacity="0.38"/>
+      <stop offset="94%" stop-color="#9e8c5e" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#282216" stop-opacity="0.65"/>
+    </linearGradient>
+    <radialGradient id="obj-grad-bell-cavity" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#040403"/>
+      <stop offset="72%" stop-color="#0b0a07"/>
+      <stop offset="100%" stop-color="#262015"/>
+    </radialGradient>
+
+    <!-- Plank & Book Gradients -->
+    <linearGradient id="obj-grad-plank-top" x1="0" y1="487" x2="0" y2="544" gradientUnits="userSpaceOnUse">
+      <stop offset="0%"   stop-color="#a09078"/>
+      <stop offset="45%"  stop-color="#8e7e66"/>
+      <stop offset="88%"  stop-color="#786850"/>
+      <stop offset="100%" stop-color="#928166"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-plank-front" x1="0" y1="540" x2="0" y2="570" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#473a29"/>
+      <stop offset="35%" stop-color="#382d1f"/>
+      <stop offset="82%" stop-color="#2b2217"/>
+      <stop offset="100%" stop-color="#1f180f"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-book-cover" x1="552" y1="487" x2="714" y2="475" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e5e7e6"/>
+      <stop offset="35%" stop-color="#eceded"/>
+      <stop offset="75%" stop-color="#dfe1df"/>
+      <stop offset="100%" stop-color="#cfd1ce"/>
+    </linearGradient>
+    <!-- <linearGradient id="obj-grad-book-spine" x1="552" y1="490" x2="629" y2="538" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2c2c2a"/>
+      <stop offset="45%" stop-color="#3b3a38"/>
+      <stop offset="100%" stop-color="#232220"/>
+    </linearGradient> -->
+    <clipPath id="obj-clip-book-pages-left">
+      <path d="M 555 488 L 629 518 L 629 538 L 555 506 Z"/>
+    </clipPath>
+    <linearGradient id="obj-grad-book-pages-left" x1="555" y1="488" x2="629" y2="538" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#877254"/>
+      <stop offset="38%" stop-color="#9e8765"/>
+      <stop offset="78%" stop-color="#b09771"/>
+      <stop offset="100%" stop-color="#9a825e"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-book-pages" x1="629" y1="518" x2="714" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#dbc69e"/>
+      <stop offset="35%" stop-color="#ccb284"/>
+      <stop offset="75%" stop-color="#b59a6a"/>
+      <stop offset="100%" stop-color="#9e8355"/>
+    </linearGradient>
+
+    <!-- Chair Nighttime Gradients -->
+    <linearGradient id="obj-grad-chair-seat" x1="0" y1="450" x2="0" y2="462" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#696861"/>
+      <stop offset="45%" stop-color="#53514a"/>
+      <stop offset="85%" stop-color="#3b3831"/>
+      <stop offset="100%" stop-color="#221f1a"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-chair-front" x1="0" y1="306" x2="0" y2="582" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2e2821"/>
+      <stop offset="35%" stop-color="#221d17"/>
+      <stop offset="75%" stop-color="#15120e"/>
+      <stop offset="100%" stop-color="#0b0907"/>
+    </linearGradient>
+    <linearGradient id="obj-grad-chair-rim-l" x1="1010" y1="0" x2="1082" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4b473e"/>
+      <stop offset="30%" stop-color="#221d17"/>
+      <stop offset="70%" stop-color="#191510"/>
+      <stop offset="100%" stop-color="#3a362e"/>
+    </linearGradient>
+    <pattern id="pat-stars-bright" width="191" height="173" patternUnits="userSpaceOnUse" patternTransform="rotate(7)">
+      <circle cx="21"  cy="33"  r="1.0"  fill="#ffffff" opacity="0.95"/>
+      <circle cx="74"  cy="12"  r="0.9"  fill="#dbe9ff" opacity="0.9"/>
+      <circle cx="133" cy="41"  r="1.15" fill="#ffffff" opacity="0.95"/>
+      <circle cx="171" cy="18"  r="0.85" fill="#ffe8cf" opacity="0.85"/>
+      <circle cx="48"  cy="84"  r="1.1"  fill="#ffffff" opacity="0.95"/>
+      <circle cx="103" cy="97"  r="0.9"  fill="#d6e6ff" opacity="0.88"/>
+      <circle cx="157" cy="112" r="1.0"  fill="#ffffff" opacity="0.92"/>
+      <circle cx="14"  cy="139" r="0.85" fill="#ffffff" opacity="0.85"/>
+      <circle cx="86"  cy="151" r="1.2"  fill="#ffffff" opacity="0.95"/>
+      <circle cx="139" cy="160" r="0.9"  fill="#cfe2ff" opacity="0.88"/>
+    </pattern>
+    <!-- Ragged leafy edge for tree canopies -->
+    <filter id="tree-foliage" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.09 0.11" numOctaves="3" seed="12" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.7"/>
+    </filter>
+
+    <!-- Soft, hazier edge for the more distant trees -->
+    <filter id="tree-foliage-far" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08 0.10" numOctaves="3" seed="27" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="11" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="1.3"/>
+    </filter>
+    <!-- Tree line along the whole horizon: tall on both sides, lower in the middle -->
+    <g id="treeline">
+      <!-- Left mass (tall) -->
+      <circle cx="866" cy="268" r="32"/>
+      <circle cx="902" cy="256" r="30"/>
+      <circle cx="938" cy="278" r="32"/>
+      <circle cx="852" cy="305" r="34"/>
+      <circle cx="888" cy="306" r="38"/>
+      <circle cx="926" cy="322" r="36"/>
+      <circle cx="962" cy="312" r="30"/>
+      <circle cx="900" cy="346" r="36"/>
+      <circle cx="946" cy="350" r="32"/>
+      <circle cx="985" cy="340" r="28"/>
+      <circle cx="1010" cy="362" r="26"/>
+      <circle cx="975" cy="372" r="26"/>
+      <!-- Centre (lower, so the Milky Way stays visible above) -->
+      <circle cx="1038" cy="380" r="22"/>
+      <circle cx="1062" cy="386" r="20"/>
+      <circle cx="1088" cy="382" r="22"/>
+      <circle cx="1114" cy="376" r="22"/>
+      <circle cx="1140" cy="366" r="24"/>
+      <circle cx="1050" cy="396" r="22"/>
+      <circle cx="1100" cy="396" r="22"/>
+      <!-- Right mass (tall) -->
+      <circle cx="1170" cy="352" r="28"/>
+      <circle cx="1196" cy="326" r="32"/>
+      <circle cx="1222" cy="292" r="32"/>
+      <circle cx="1244" cy="278" r="30"/>
+      <circle cx="1236" cy="324" r="36"/>
+      <circle cx="1206" cy="362" r="34"/>
+      <circle cx="1244" cy="368" r="30"/>
+      <circle cx="1160" cy="384" r="26"/>
+      <!-- Left-side filler: closes the sky gap above the land -->
+      <circle cx="850" cy="352" r="34"/>
+      <circle cx="872" cy="372" r="32"/>
+      <circle cx="850" cy="388" r="30"/>
+      <circle cx="900" cy="384" r="30"/>
+      <circle cx="932" cy="390" r="28"/>
+      <circle cx="966" cy="392" r="26"/>
+      <circle cx="1000" cy="394" r="24"/>
+      <rect x="830" y="365" width="190" height="70"/>
+      <!-- Solid base so no sky shows below the foliage -->
+      <rect x="830" y="395" width="430" height="70"/>
+    </g>
+    
+  </defs>
+
+  <!-- ======================================================================= -->
+  <!-- WHITE TRIPTYCH FRAME & PANEL DIVIDERS                                   -->
+  <!-- ======================================================================= -->
+  <rect x="0" y="0" width="1260" height="710" fill="#ffffff"/>
+
+  <!-- ======================================================================= -->
+  <!-- PART 1 OF 6: LEFT SKY (STORMY OVERCAST MOORLAND SKY)                    -->
+  <!-- ======================================================================= -->
+  <g id="part-1-sky-stormy" clip-path="url(#clip-panel1-sky)">
+    <!-- Base stormy sky gradient -->
+    <rect x="10" y="10" width="408" height="412" fill="url(#grad-p1-sky)"/>
+
+    <!-- Pale atmospheric clearing pocket behind mid-right clouds -->
+    <ellipse cx="268" cy="215" rx="165" ry="120" fill="url(#grad-p1-clearing)"/>
+    <ellipse cx="290" cy="222" rx="95" ry="52" fill="#6d8694" opacity="0.38" filter="url(#blur-heavy)"/>
+    <ellipse cx="148" cy="245" rx="85" ry="40" fill="#465b68" opacity="0.34" filter="url(#blur-heavy)"/>
+
+    <!-- Lower horizon cold misty band -->
+    <rect x="10" y="340" width="408" height="82" fill="#324450" opacity="0.45" filter="url(#blur-heavy)"/>
+    <ellipse cx="215" cy="392" rx="220" ry="26" fill="#455a67" opacity="0.38" filter="url(#blur-med)"/>
+
+    <!-- Billowing dark upper & diagonal storm cloud banks -->
+    <path d="M 0 0 H 425 V 135 C 365 160, 310 155, 255 182 C 200 208, 150 230, 90 220 C 40 212, 10 230, 0 245 Z"
+          fill="#0d141a" opacity="0.92" filter="url(#blur-heavy)"/>
+    <path d="M 145 55 C 215 45, 290 62, 355 42 C 395 30, 420 55, 425 85 V 175 C 375 185, 325 148, 275 152 C 225 156, 175 185, 130 160 Z"
+          fill="#152029" opacity="0.82" filter="url(#blur-med)"/>
+
+    <!-- Mid-left swirling storm cloud underside -->
+    <path d="M 0 185 C 55 165, 125 190, 170 222 C 205 246, 165 288, 105 292 C 50 296, 15 275, 0 285 Z"
+          fill="#18242e" opacity="0.78" filter="url(#blur-med)"/>
+    <path d="M 210 262 C 275 245, 345 258, 422 238 V 335 C 365 348, 290 328, 235 338 C 175 348, 130 330, 95 318 C 145 298, 175 272, 210 262 Z"
+          fill="#1b2833" opacity="0.82" filter="url(#blur-med)"/>
+
+    <!-- Soft silver-slate rims catching diffused light -->
+    <path d="M 195 198 C 245 178, 305 182, 355 205" stroke="#718997" stroke-width="18" stroke-linecap="round" fill="none" opacity="0.28" filter="url(#blur-med)"/>
+    <path d="M 75 268 C 130 250, 185 262, 235 286" stroke="#536b78" stroke-width="14" stroke-linecap="round" fill="none" opacity="0.26" filter="url(#blur-med)"/>
+
+    <!-- Lower horizontal dark stratus clouds hovering above ridge -->
+    <path d="M 0 330 C 80 315, 165 340, 255 326 C 325 315, 380 332, 425 322 V 395 C 345 388, 260 398, 180 388 C 100 378, 40 392, 0 385 Z"
+          fill="#152028" opacity="0.76" filter="url(#blur-med)"/>
+
+    <!-- Organic turbulent cloud wisps & deep storm pockets -->
+    <rect x="-8" y="-8" width="444" height="444" filter="url(#storm-cloud-wisps)" opacity="0.62"/>
+    <rect x="-8" y="-8" width="444" height="444" filter="url(#storm-cloud-dark)" opacity="0.58"/>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- PART 2 OF 6: LEFT LAND (DARK ROLLING MOORLAND HILLS)                    -->
+  <!-- ======================================================================= -->
+  <g id="part-2-land-moorland" clip-path="url(#clip-panel1-land)">
+    <!-- Distant dark horizon ridge -->
+    <path d="M 12 415 C 80 413, 140 410, 210 412 C 280 414, 340 412, 416 413 V 460 H 12 Z" fill="#0d1313"/>
+
+    <!-- Subtle pale distant misty loch/lowland sliver on left -->
+    <path d="M 12 419 C 55 418, 110 419, 155 421 C 105 423, 50 423, 12 424 Z" fill="#3a4c56" opacity="0.52" filter="url(#blur-soft)"/>
+
+    <!-- Distant hill band 1 -->
+    <path d="M 12 426 C 95 423, 190 428, 285 424 C 345 421, 385 423, 416 425 V 480 H 12 Z" fill="#131a17"/>
+
+    <!-- Mid-distant rolling moorland ridge 2 -->
+    <path d="M 12 438 C 75 432, 138 446, 205 456 C 278 467, 348 444, 416 440 V 520 H 12 Z" fill="url(#grad-p1-ridge2)"/>
+    <!-- Faint mist in valley crease -->
+    <path d="M 12 454 C 95 450, 175 466, 255 470 C 325 474, 380 462, 416 458" stroke="#303e3c" stroke-width="10" fill="none" opacity="0.34" filter="url(#blur-soft)"/>
+
+    <!-- Mid-ground interlocking moorland ridge 3 (left slope & right valley) -->
+    <path d="M 12 462 C 88 456, 175 472, 245 488 C 315 504, 372 486, 416 476 V 570 H 12 Z" fill="url(#grad-p1-ridge3)"/>
+    <!-- Subtle slope highlight & shadow creases -->
+    <path d="M 12 465 C 85 460, 165 476, 232 490" stroke="#323d33" stroke-width="5" fill="none" opacity="0.45" filter="url(#blur-soft)"/>
+    <path d="M 185 496 C 255 486, 338 472, 416 470 V 565 H 185 Z" fill="#19211a"/>
+
+    <!-- Lower mid-ground moor shoulder -->
+    <path d="M 12 505 C 90 518, 165 500, 245 508 C 320 516, 378 528, 416 520 V 610 H 12 Z" fill="#1b231b"/>
+    <path d="M 12 518 C 110 530, 185 516, 280 526 C 345 533, 388 538, 416 534 V 698 H 12 Z" fill="#141a14"/>
+
+    <!-- Foreground sweeping moorland slope -->
+    <path d="M 12 552 C 95 544, 180 554, 265 548 C 335 543, 385 548, 416 544 V 698 H 12 Z" fill="url(#grad-p1-fg)"/>
+
+    <!-- Subtle foreground dimple & dry grass patches -->
+    <ellipse cx="145" cy="592" rx="95" ry="26" fill="#273025" opacity="0.42" filter="url(#blur-med)"/>
+    <ellipse cx="320" cy="618" rx="85" ry="24" fill="#0d110d" opacity="0.55" filter="url(#blur-med)"/>
+    <ellipse cx="95" cy="655" rx="110" ry="34" fill="#090d09" opacity="0.58" filter="url(#blur-med)"/>
+    <ellipse cx="260" cy="658" rx="90" ry="25" fill="#21281f" opacity="0.38" filter="url(#blur-med)"/>
+
+    <!-- Coarse moorland grass & heather turbulence texture -->
+    <rect x="-8" y="405" width="444" height="310" filter="url(#moor-texture)" opacity="0.48"/>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- PART 3 OF 6: MIDDLE SKY (PALE SERENE OVERCAST DAY SKY)                  -->
+  <!-- ======================================================================= -->
+  <g id="part-3-sky-daylight" clip-path="url(#clip-panel2-sky)">
+    <!-- Smooth daylight overcast gradient -->
+    <rect x="426" y="10" width="408" height="229" fill="url(#grad-p2-sky)"/>
+
+    <!-- Subtle soft horizontal overcast cloud wisps -->
+    <ellipse cx="565" cy="95" rx="190" ry="24" fill="#ccdce6" opacity="0.42" filter="url(#blur-heavy)" transform="rotate(-3 565 95)"/>
+    <ellipse cx="710" cy="138" rx="180" ry="20" fill="#cfdee7" opacity="0.46" filter="url(#blur-heavy)" transform="rotate(-2 710 138)"/>
+    <ellipse cx="520" cy="175" rx="170" ry="18" fill="#dbe6ec" opacity="0.52" filter="url(#blur-heavy)"/>
+
+    <!-- Warm hazy glow hugging the prairie horizon -->
+    <rect x="426" y="198" width="408" height="41" fill="#ecebe4" opacity="0.68" filter="url(#blur-med)"/>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- PART 4 OF 6: MIDDLE LAND (GOLDEN WHEAT FIELD — CREATIVE MULTI-LAYER)    -->
+  <!-- ======================================================================= -->
+  <g id="part-4-land-wheatfield" clip-path="url(#clip-panel2-land)">
+    <!-- 1. Base Depth-of-Field Golden Field Gradient -->
+    <rect x="426" y="234" width="408" height="466" fill="url(#grad-p2-field)"/>
+
+    <!-- Subtle hazy horizon edge where distant wheat meets sky -->
+    <line x1="426" y1="235.5" x2="834" y2="235.5" stroke="#a69b80" stroke-width="2.5" opacity="0.55" filter="url(#blur-soft)"/>
+
+    <!-- Soft dappled sunlight bands sweeping horizontally across the distant field -->
+    <ellipse cx="630" cy="272" rx="230" ry="14" fill="#eadcc0" opacity="0.34" filter="url(#blur-med)"/>
+    <ellipse cx="580" cy="318" rx="210" ry="18" fill="#e6d3ad" opacity="0.28" filter="url(#blur-med)"/>
+    <ellipse cx="685" cy="378" rx="190" ry="22" fill="#e2ca9a" opacity="0.24" filter="url(#blur-med)"/>
+
+    <!-- 2. Far Out-of-Focus Vertical Wheat Noise (millions of distant blurred heads) -->
+    <g mask="url(#mask-p2-far-fade)">
+      <rect x="408" y="220" width="444" height="315" filter="url(#wheat-vertical-noise-far)" opacity="0.72"/>
+    </g>
+
+    <!-- 3. Mid-Distance Vertical Fibrous Wheat Noise -->
+    <g mask="url(#mask-p2-far-fade)">
+      <rect x="408" y="275" width="444" height="340" filter="url(#wheat-vertical-noise-mid)" opacity="0.58"/>
+    </g>
+
+    <!-- 4. Mid-Field Coprime Tilted Wheat Patterns (softly out-of-focus) -->
+    <g mask="url(#mask-p2-mid-wheat)" filter="url(#wheat-mid-blur)">
+      <rect x="426" y="285" width="408" height="415" fill="url(#pat-wheat-mid-dark)" opacity="0.30"/>
+      <rect x="426" y="285" width="408" height="415" fill="url(#pat-wheat-mid-light)" opacity="0.88"/>
+    </g>
+
+    <!-- 5. Mid-Foreground Crisp Coprime Wheat Patterns (shadow & sunlit layers) -->
+    <g mask="url(#mask-p2-fg-wheat)">
+      <!-- Subtle deeper lower-field shadows for stalk depth -->
+      <rect x="426" y="600" width="408" height="100" fill="#6a5430" opacity="0.14" filter="url(#blur-heavy)"/>
+      <rect x="426" y="390" width="408" height="310" fill="url(#pat-wheat-fg-shadow)" opacity="0.38"/>
+      <rect x="426" y="390" width="408" height="310" fill="url(#pat-wheat-fg-gold)" opacity="0.95"/>
+    </g>
+
+    <!-- 6. Foreground Sharp Hero Wheat Clusters (instanced reusable modules) -->
+    <g>
+      <!-- Mid-foreground crest clusters (reaching up to y ~ 435-465) -->
+      <use href="#wheat-cluster-b" transform="translate(462,568) scale(0.72) rotate(-4)"/>
+      <use href="#wheat-cluster-a" transform="translate(532,575) scale(0.74) rotate(3)"/>
+      <use href="#wheat-cluster-b" transform="translate(612,562) scale(0.70) scale(-1,1) rotate(-3)"/>
+      <use href="#wheat-cluster-a" transform="translate(692,572) scale(0.76) rotate(4)"/>
+      <use href="#wheat-cluster-b" transform="translate(776,565) scale(0.75) rotate(-5)"/>
+
+      <!-- Crisp lower-mid foreground stalks -->
+      <use href="#wheat-cluster-a" transform="translate(446,650) scale(0.96) rotate(5)"/>
+      <use href="#wheat-cluster-b" transform="translate(508,668) scale(1.02) scale(-1,1) rotate(-3)"/>
+      <use href="#wheat-cluster-c" transform="translate(572,682) scale(0.95) rotate(-4)"/>
+      <use href="#wheat-cluster-a" transform="translate(642,670) scale(0.98) rotate(3)"/>
+      <use href="#wheat-cluster-b" transform="translate(718,676) scale(1.04) rotate(-4)"/>
+      <use href="#wheat-cluster-c" transform="translate(804,660) scale(1.02) scale(-1,1) rotate(5)"/>
+
+      <!-- Rich foreground bottom anchors -->
+      <use href="#wheat-cluster-b" transform="translate(474,715) scale(1.18) rotate(6)"/>
+      <use href="#wheat-cluster-a" transform="translate(556,722) scale(1.12) scale(-1,1) rotate(-4)"/>
+      <use href="#wheat-cluster-b" transform="translate(632,718) scale(1.15) rotate(2)"/>
+      <use href="#wheat-cluster-a" transform="translate(744,720) scale(1.22) rotate(-6)"/>
+    </g>
+
+    <!-- 7. Near-Camera Out-of-Focus Bokeh Wheat Clusters (authentic lens depth) -->
+    <g filter="url(#wheat-near-bokeh)" opacity="0.88">
+      <use href="#wheat-cluster-c" transform="translate(425,710) scale(1.32) rotate(10)"/>
+      <use href="#wheat-cluster-a" transform="translate(515,745) scale(1.25) rotate(-7)"/>
+      <use href="#wheat-cluster-b" transform="translate(675,750) scale(1.28) scale(-1,1) rotate(5)"/>
+      <use href="#wheat-cluster-c" transform="translate(828,708) scale(1.36) scale(-1,1) rotate(-9)"/>
+    </g>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- PART 5 OF 6: RIGHT SKY (STARRY NIGHT & MILKY WAY GALAXY)                -->
+  <!-- ======================================================================= -->
+  <g id="part-5-sky-night" clip-path="url(#clip-panel3-sky)">
+    <!-- Base sky -->
+    <rect x="842" y="10" width="408" height="414" fill="url(#grad-p3-sky)"/>
+
+    <!-- Lighter vignette (was too heavy) -->
+    <ellipse cx="860"  cy="30" rx="100" ry="120" fill="#04070b" opacity="0.35" filter="url(#blur-xl)"/>
+    <ellipse cx="1235" cy="30" rx="100" ry="120" fill="#04070b" opacity="0.35" filter="url(#blur-xl)"/>
+    <!-- Dark top-edge falloff -->
+    <rect x="842" y="10" width="408" height="150" fill="#02040a" opacity="0.55" filter="url(#blur-heavy)"/>
+    <linearGradient id="grad-p3-top-dark" x1="0" y1="10" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#010308" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#010308" stop-opacity="0"/>
+    </linearGradient>
+    <rect x="842" y="10" width="408" height="190" fill="url(#grad-p3-top-dark)"/>
+
+    <!-- Bright horizon haze band -->
+    <rect x="842" y="320" width="408" height="105" fill="#6f879b" opacity="0.38" filter="url(#blur-heavy)"/>
+    <!-- blue-grey glow behind the horizon / between the trees -->
+    <ellipse cx="1050" cy="395" rx="260" ry="75" fill="#7f97ab" opacity="0.6" filter="url(#blur-xl)"/>
+
+    <!-- Milky Way outer glow (wide, hazy) -->
+    <path d="M 960 -12 C 995 100, 1040 225, 1092 420"
+          stroke="#52687f" stroke-width="130" stroke-linecap="round" fill="none" opacity="0.42" filter="url(#blur-xl)"/>
+    <path d="M 990 40 C 1020 140, 1052 240, 1082 375"
+          stroke="#8798ad" stroke-width="64" stroke-linecap="round" fill="none" opacity="0.38" filter="url(#blur-heavy)"/>
+
+    <!-- Warm dusty galactic core -->
+    <ellipse cx="1045" cy="205" rx="62" ry="115" fill="url(#grad-p3-mw-core)" transform="rotate(-20 1045 205)" filter="url(#blur-heavy)"/>
+
+    <!-- Turbulent gas clouds -->
+    <g mask="url(#mask-milkyway)">
+      <rect x="830" y="0" width="430" height="430" filter="url(#milkyway-dust)" opacity="0.9"/>
+    </g>
+
+    <!-- Dark dust rift (thinner and subtler) -->
+    <path d="M 990 25 C 1015 110, 1040 170, 1062 230 C 1076 268, 1085 320, 1095 385"
+          stroke="#080c12" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.40" filter="url(#blur-med)"/>
+
+    <!-- Star fields: fine, medium, bright -->
+    <rect x="842" y="10" width="408" height="414" fill="url(#pat-stars-fine)"   opacity="1"/>
+    <rect x="842" y="10" width="408" height="414" fill="url(#pat-stars-med)"    opacity="1"/>
+    <rect x="842" y="10" width="408" height="414" fill="url(#pat-stars-bright)" opacity="0.95"/>
+
+    <!-- Dense star river inside the band (two layers) -->
+    <g mask="url(#mask-milkyway-stars)">
+      <rect x="842" y="10" width="408" height="414" fill="url(#pat-stars-mw)"   opacity="1"/>
+      <rect x="842" y="10" width="408" height="414" fill="url(#pat-stars-fine)" opacity="1"/>
+    </g>
+    <rect x="842" y="10" width="408" height="90" fill="#02040a" opacity="0.25" filter="url(#blur-med)"/>
+
+    <!-- Curated bright stars (keep your existing <g> of 15 circles here unchanged) -->
+    <g>
+      <circle cx="888" cy="64" r="1.25" fill="#ffffff" opacity="0.92"/>
+      <circle cx="964" cy="48" r="1.15" fill="#d9e8ff" opacity="0.90"/>
+      <circle cx="1116" cy="42" r="1.35" fill="#ffffff" opacity="0.95"/>
+      <circle cx="1188" cy="86" r="1.10" fill="#ffe8d0" opacity="0.88"/>
+      <circle cx="872" cy="148" r="1.15" fill="#cfe2ff" opacity="0.85"/>
+      <circle cx="1012" cy="128" r="1.30" fill="#ffffff" opacity="0.92"/>
+      <circle cx="1142" cy="156" r="1.20" fill="#ffffff" opacity="0.90"/>
+      <circle cx="1218" cy="198" r="1.30" fill="#d8e7ff" opacity="0.92"/>
+      <circle cx="912" cy="236" r="1.15" fill="#ffffff" opacity="0.88"/>
+      <circle cx="1054" cy="242" r="1.25" fill="#ffe9d4" opacity="0.90"/>
+      <circle cx="1174" cy="264" r="1.10" fill="#ffffff" opacity="0.84"/>
+      <circle cx="882" cy="308" r="1.20" fill="#d4e5ff" opacity="0.82"/>
+      <circle cx="1088" cy="312" r="1.25" fill="#ffffff" opacity="0.88"/>
+      <circle cx="1208" cy="336" r="1.15" fill="#ffffff" opacity="0.80"/>
+      <circle cx="984" cy="348" r="1.05" fill="#cfe2ff" opacity="0.78"/>
+    </g>
+  </g>
+  <!-- ======================================================================= -->
+  <!-- NIGHT TREE LINE (no trunks, covers the horizon)                         -->
+  <!-- ======================================================================= -->
+  <g id="night-trees" clip-path="url(#clip-panel3-full)">
+    <g filter="url(#tree-foliage)">
+      <!-- very faint starlit rim on the upper edges -->
+      <use href="#treeline" fill="#0f1822" transform="translate(-1.5,-2.5)"/>
+      <!-- near-black foliage body -->
+      <use href="#treeline" fill="#040605"/>
+    </g>
+
+    <!-- dark pockets inside the foliage for depth -->
+    <g filter="url(#tree-foliage)" fill="#010201" opacity="0.8">
+      <circle cx="890" cy="312" r="16"/>
+      <circle cx="930" cy="336" r="14"/>
+      <circle cx="960" cy="355" r="12"/>
+      <circle cx="1214" cy="330" r="16"/>
+      <circle cx="1190" cy="366" r="12"/>
+      <circle cx="1100" cy="388" r="10"/>
+    </g>
+    <!-- Faint trunks on the left (barely visible, as in the reference) -->
+    <g fill="#0b110d" opacity="0.9">
+      <path d="M 858 372 L 859 420 L 853 420 Q 857 400, 856 372 Z"/>
+      <path d="M 884 380 L 885 424 L 878 424 Q 883 404, 881 380 Z"/>
+      <path d="M 912 386 L 913 428 L 906 428 Q 911 408, 909 386 Z"/>
+      <path d="M 944 392 L 945 430 L 938 430 Q 943 412, 941 392 Z"/>
+      <path d="M 976 394 L 977 432 L 970 432 Q 975 414, 973 394 Z"/>
+    </g>
+    <!-- Thin starlit edge on the trunks -->
+    <g stroke="#1a2620" stroke-width="0.8" opacity="0.6" fill="none">
+      <path d="M 859 376 L 859 418"/>
+      <path d="M 885 384 L 885 422"/>
+      <path d="M 913 390 L 913 426"/>
+      <path d="M 945 396 L 945 428"/>
+    </g>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- PART 6 OF 6: RIGHT LAND (DARK NIGHT ROLLING MEADOW HILLS)                -->
+  <!-- ======================================================================= -->
+  <g id="part-6-land-meadow" clip-path="url(#clip-panel3-land)">
+    <!-- FAR LAND (second land, behind the chair) -->
+    <path d="M 844 402 C 900 408, 955 418, 1020 418 C 1075 418, 1140 405, 1248 390 V 505 H 844 Z" fill="url(#grad-p3-hill-back)"/>
+    <path d="M 844 403 C 900 409, 955 419, 1020 419 C 1075 419, 1140 406, 1248 391"
+          stroke="#1a231a" stroke-width="3" fill="none" opacity="0.25" filter="url(#blur-soft)"/>
+
+    <path d="M 844 426 C 915 432, 980 448, 1055 456 C 1135 464, 1195 446, 1248 438 V 550 H 844 Z" fill="#0d140d"/>
+    <path d="M 970 460 C 1045 450, 1135 432, 1248 424 V 545 H 970 Z" fill="#111a11" opacity="0.9"/>
+    <path d="M 844 468 C 920 478, 995 462, 1085 470 C 1165 478, 1210 470, 1248 465 V 590 H 844 Z" fill="#101810"/>
+
+    <!-- Light shades on the far land (kept well above the front crest) -->
+    <ellipse cx="1040" cy="434" rx="210" ry="18" fill="#34452f" opacity="0.32" filter="url(#blur-med)"/>
+    <ellipse cx="900"  cy="452" rx="120" ry="14" fill="#2c3b29" opacity="0.28" filter="url(#blur-med)"/>
+    <ellipse cx="1180" cy="448" rx="110" ry="13" fill="#2c3b29" opacity="0.26" filter="url(#blur-med)"/>
+
+    <!-- DARK SHADOW BAND hugging the back of the front land (restores the border) -->
+    <path d="M 844 494 C 915 486, 985 476, 1048 476 C 1118 476, 1185 488, 1248 484"
+          stroke="#020302" stroke-width="26" stroke-linecap="round" fill="none" opacity="0.85" filter="url(#blur-med)"/>
+
+    <!-- FRONT LAND (where the chair stands) -->
+    <path d="M 844 504 C 915 496, 985 486, 1048 486 C 1118 486, 1185 498, 1248 494 V 698 H 844 Z" fill="url(#grad-p3-fg)"/>
+
+    <!-- Faint rim light along the front crest, so the edge reads clearly -->
+    <path d="M 844 505 C 915 497, 985 487, 1048 487 C 1118 487, 1185 499, 1248 495"
+          stroke="#3d4e38" stroke-width="2.5" fill="none" opacity="0.5" filter="url(#blur-soft)"/>
+
+    <!-- Glow directly below the chair -->
+    <ellipse cx="1046" cy="592" rx="150" ry="42" fill="#3a4a35" opacity="0.30" filter="url(#blur-heavy)"/>
+
+    <!-- Dark falloff at the far corners -->
+    <ellipse cx="880"  cy="640" rx="110" ry="50" fill="#020302" opacity="0.6" filter="url(#blur-heavy)"/>
+    <ellipse cx="1220" cy="640" rx="110" ry="50" fill="#020302" opacity="0.6" filter="url(#blur-heavy)"/>
+
+    <!-- Textures -->
+    <rect x="830" y="388" width="430" height="320" filter="url(#meadow-texture)" opacity="0.30"/>
+    <rect x="844" y="485" width="404" height="213" fill="url(#pat-night-grass)" opacity="0.45"/>
+  </g>
+  <!-- ======================================================================= -->
+  <!-- FOREGROUND OBJECT 1: WEATHERED WOODEN STAND, ANTIQUE BELL & ROPE        -->
+  <!-- ======================================================================= -->
+  <g id="obj-bell-stand" clip-path="url(#clip-panel1-full)">
+    <!-- Horizontal Crossbeam (extends behind/into post joint) -->
+    <g>
+      <path d="M 12 125 L 152 123 L 155 139 L 152 159 L 12 161 Z" fill="url(#obj-grad-beam)"/>
+      <!-- Sawn beam end-grain & beveled tip -->
+      <path d="M 152 123 L 155 139 L 152 159 L 148 157 L 150 139 L 148 125 Z" fill="#171815"/>
+      <!-- Top edge stormy skylight catchlight -->
+      <path d="M 12 125 L 152 123.5" stroke="#4f544e" stroke-width="1.4" opacity="0.75"/>
+      <!-- Deep weathered cracks & grain -->
+      <g clip-path="url(#obj-clip-beam)">
+        <rect x="8" y="118" width="154" height="48" filter="url(#obj-wood-h)" opacity="0.58"/>
+        <path d="M 38 134 Q 82 132, 146 135 M 52 146 Q 98 148, 148 145 M 20 153 L 118 152"
+              stroke="#0a0b09" stroke-width="1.2" fill="none" opacity="0.65"/>
+        <path d="M 55 130 L 138 129 M 68 142 L 132 141"
+              stroke="#484b44" stroke-width="0.7" fill="none" opacity="0.45"/>
+      </g>
+    </g>
+
+    <!-- Vertical Wooden Post -->
+    <g>
+      <path d="M 16 74 Q 32 71, 47 75 L 48 698 H 16 Z" fill="url(#obj-grad-post)"/>
+      <!-- Top post cap weathered crown -->
+      <path d="M 16 74 Q 32 71, 47 75 Q 32 78, 16 76 Z" fill="#3a3d38" opacity="0.85"/>
+      <!-- Right edge cool stormy sky rim light -->
+      <path d="M 46.5 76 L 47.5 698" stroke="#535750" stroke-width="1.5" opacity="0.65"/>
+      <!-- Vertical grain & deep weathering fissures -->
+      <g clip-path="url(#obj-clip-post)">
+        <rect x="10" y="70" width="44" height="632" filter="url(#obj-wood-v)" opacity="0.68"/>
+        <path d="M 24 85 Q 25 220, 23 360 Q 25 520, 22 695" stroke="#0c0d0b" stroke-width="1.4" fill="none" opacity="0.75"/>
+        <path d="M 35 78 Q 37 260, 34 440 Q 36 580, 35 696" stroke="#0e0f0c" stroke-width="1.1" fill="none" opacity="0.65"/>
+        <path d="M 41 165 Q 40 320, 42 490 Q 41 610, 42 696" stroke="#4f524a" stroke-width="0.8" fill="none" opacity="0.4"/>
+        <!-- Joint mortise shadow & rusted iron bolt head where beam joins post -->
+        <rect x="16" y="124" width="32" height="37" fill="#181917" opacity="0.52"/>
+        <path d="M 16 125 H 48 M 16 160 H 48" stroke="#090a08" stroke-width="1.5" opacity="0.8"/>
+        <circle cx="33" cy="142" r="3.4" fill="#181512"/>
+        <circle cx="33.5" cy="141.5" r="1.4" fill="#463d33" opacity="0.7"/>
+      </g>
+    </g>
+
+    <!-- Forged Iron Suspension Collar & Hanging Ring -->
+    <g>
+      <path d="M 107 122 L 127 122 L 128 164 L 106 164 Z" fill="#171614" opacity="0.9"/>
+      <path d="M 107 123 H 127 M 106 162 H 128" stroke="#3c352d" stroke-width="1.2" opacity="0.75"/>
+      <!-- Iron U-shackle & ring -->
+      <path d="M 111 161 L 112 171 Q 117 175, 122 171 L 123 161" stroke="#221e1a" stroke-width="3.6" fill="none"/>
+      <ellipse cx="117" cy="175" rx="5.5" ry="6.5" stroke="#2a241d" stroke-width="2.6" fill="none"/>
+      <path d="M 113 172 Q 115 169, 119 170" stroke="#5e5243" stroke-width="0.9" fill="none" opacity="0.7"/>
+    </g>
+
+    <!-- Antique Tarnished Bronze Bell + Clapper + Frayed Rope -->
+    <g transform="translate(116, 174) rotate(-16)">
+      <!-- Crown lugs / yoke -->
+      <path d="M -9 2 C -12 8, -14 13, -12 16 H 12 C 14 13, 12 8, 9 2 Z" fill="#2e281b"/>
+      <path d="M -8 4 C -10 9, -10 12, -8 14" stroke="#6c5f41" stroke-width="1.4" fill="none" opacity="0.75"/>
+
+      <!-- Bell Mouth Interior Cavity -->
+      <ellipse cx="0" cy="83" rx="43" ry="11" fill="url(#obj-grad-bell-cavity)"/>
+
+      <!-- Clapper Shaft & Iron Ball inside cavity -->
+      <line x1="0" y1="62" x2="-2" y2="95" stroke="#181511" stroke-width="3.4"/>
+      <circle cx="-2" cy="95" r="5.6" fill="#231f19"/>
+      <circle cx="-3.8" cy="93.5" r="2.2" fill="#5e5240" opacity="0.7"/>
+
+      <!-- Main Bronze Bell Silhouette -->
+      <path d="M -14 14 C -24 22, -23 40, -29 56 C -34 68, -42 75, -45 81 C -46 84, -42 86, -34 88 C -12 91, 14 91, 35 88 C 43 86, 46 83, 44 80 C 40 74, 32 67, 27 55 C 21 39, 22 21, 12 14 Z"
+            fill="url(#obj-grad-bell-body)"/>
+      <!-- Vertical metallic sky/ground reflection layer -->
+      <path d="M -14 14 C -24 22, -23 40, -29 56 C -34 68, -42 75, -45 81 C -46 84, -42 86, -34 88 C -12 91, 14 91, 35 88 C 43 86, 46 83, 44 80 C 40 74, 32 67, 27 55 C 21 39, 22 21, 12 14 Z"
+            fill="url(#obj-grad-bell-vert)"/>
+
+      <!-- Bronze Patina & Aged Weathering Overlay -->
+      <g clip-path="url(#obj-clip-bell)">
+        <rect x="-50" y="10" width="100" height="86" filter="url(#obj-bell-patina)" opacity="0.62"/>
+        <!-- Molded decorative casting rings around waist & sound-bow -->
+        <path d="M -21 25 Q 0 28, 20 25" stroke="#1a1710" stroke-width="1.2" fill="none" opacity="0.55"/>
+        <path d="M -22 27 Q 0 30, 21 27" stroke="#928055" stroke-width="0.9" fill="none" opacity="0.5"/>
+        <path d="M -37 70 Q 0 75, 36 70" stroke="#18140d" stroke-width="1.3" fill="none" opacity="0.6"/>
+        <path d="M -38 72 Q 0 77, 37 72" stroke="#998759" stroke-width="1.0" fill="none" opacity="0.45"/>
+        <!-- Left shoulder warm overcast specular sheen -->
+        <path d="M -16 18 C -23 28, -22 42, -28 57 C -32 66, -38 74, -40 79"
+              stroke="#b4a06d" stroke-width="4.5" stroke-linecap="round" fill="none" opacity="0.32" filter="url(#obj-shadow-xs)"/>
+        <!-- Thick bottom lip metallic edge highlight -->
+        <path d="M -42 83 C -18 87, 14 87, 40 82" stroke="#9e8c5f" stroke-width="1.8" fill="none" opacity="0.62"/>
+      </g>
+
+      <!-- Twisted Frayed Hemp Rope trailing diagonally down-right -->
+      <g transform="translate(-2, 100)">
+        <path d="M 0 0 C 7 24, 24 52, 46 86" stroke="#2c261d" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+        <path d="M 0 0 C 7 24, 24 52, 46 86" stroke="#6c604e" stroke-width="1.5" stroke-dasharray="3 2.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+        <!-- Rope knot just below clapper & frayed tip -->
+        <ellipse cx="1" cy="5" rx="3.4" ry="2.8" fill="#463e32"/>
+        <ellipse cx="46" cy="86" rx="2.6" ry="3.2" fill="#3a3329" transform="rotate(-32 46 86)"/>
+        <path d="M 46 87 L 51 94 M 46 87 L 48 96 M 45 87 L 43 93" stroke="#756957" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- FOREGROUND OBJECT 2: WEATHERED PLANK, CLOSED WHITE BOOK & FRONT WHEAT   -->
+  <!-- ======================================================================= -->
+  <g id="obj-book-on-plank" clip-path="url(#clip-panel2-full)">
+    <!-- Weathered Rustic Wooden Plank -->
+    <g>
+      <!-- Subtle ground/wheat shadow under plank -->
+      <path d="M 426 565 H 834 V 578 H 426 Z" fill="#1e170d" opacity="0.52" filter="url(#obj-shadow-soft)"/>
+
+      <!-- Top horizontal plank surface -->
+      <path d="M 426 490 C 510 488, 610 490, 710 487 C 765 486, 805 488, 834 489 V 543 C 745 544, 620 541, 515 543 C 468 544, 440 542, 426 542 Z"
+            fill="url(#obj-grad-plank-top)"/>
+
+      <!-- Thick weathered front edge face -->
+      <path d="M 426 542 C 445 542, 470 544, 515 543 C 620 541, 745 544, 834 543 V 567 C 765 568, 650 571, 555 569 C 490 568, 450 567, 426 568 Z"
+            fill="url(#obj-grad-plank-front)"/>
+
+      <!-- Plank wood-grain texture, knots & splits -->
+      <g clip-path="url(#obj-clip-plank)">
+        <rect x="420" y="482" width="420" height="92" filter="url(#obj-wood-h)" opacity="0.62"/>
+        <!-- Pale sun-bleached horizontal wood fibers -->
+        <path d="M 435 501 Q 540 499, 660 502 M 460 518 Q 585 520, 740 516 M 510 534 Q 650 532, 810 535"
+              stroke="#a8987d" stroke-width="1.1" fill="none" opacity="0.42"/>
+        <!-- Deep dark longitudinal wood cracks -->
+        <path d="M 430 510 C 490 512, 540 509, 610 511 M 670 508 C 725 507, 775 510, 830 508"
+              stroke="#2d2419" stroke-width="1.4" fill="none" opacity="0.62"/>
+        <path d="M 438 529 C 510 528, 595 531, 690 529 C 745 528, 795 531, 828 530"
+              stroke="#241c13" stroke-width="1.6" fill="none" opacity="0.65"/>
+        <path d="M 442 553 C 520 551, 620 556, 730 553 C 770 552, 805 554, 832 553"
+              stroke="#140f09" stroke-width="1.5" fill="none" opacity="0.72"/>
+        <!-- Subtle wood knot & bevel edge highlight -->
+        <ellipse cx="508" cy="524" rx="16" ry="4.5" fill="#3a2f21" opacity="0.48"/>
+        <path d="M 426 542.5 C 515 543.5, 625 541.5, 834 543.5" stroke="#99886e" stroke-width="1.3" fill="none" opacity="0.58"/>
+      </g>
+    </g>
+
+    <!-- Contact & Cast Shadows under the Book -->
+    <path d="M 550 507 L 629 542 L 716 497 L 705 489 L 628 528 L 555 498 Z"
+          fill="#1b140c" opacity="0.68" filter="url(#obj-shadow-soft)"/>
+    <path d="M 552 508 L 629 540 L 713 496 L 706 493 L 629 536 L 556 506 Z"
+          fill="#100b06" opacity="0.82" filter="url(#obj-shadow-xs)"/>
+
+    <!-- Closed Vintage White Hardcover Book -->
+    <!-- Closed Vintage White Hardcover Book -->
+    <g>
+      <!-- Bottom cover board edges peeking underneath both page faces -->
+      <path d="M 552 506 L 629 538 L 629 541 L 552 509 Z" fill="#c7c6c0"/>
+      <path d="M 629 538 L 714 494 L 714 497 L 629 541 Z" fill="#a19c8e"/>
+
+      <!-- Left-Front Aged Brown Page Block (shaded side) -->
+      <path d="M 555 488 L 629 518 L 629 538 L 555 506 Z" fill="url(#obj-grad-book-pages-left)"/>
+      <g clip-path="url(#obj-clip-book-pages-left)">
+        <rect x="550" y="484" width="84" height="58" filter="url(#obj-paper-grain)" opacity="0.58"/>
+        <!-- Fine stacked paper layers -->
+        <g stroke="#6b563a" stroke-width="0.6" opacity="0.55">
+          <line x1="555" y1="492" x2="629" y2="522"/>
+          <line x1="555" y1="495" x2="629" y2="525"/>
+          <line x1="555" y1="498" x2="629" y2="528"/>
+          <line x1="555" y1="501" x2="629" y2="531"/>
+          <line x1="555" y1="504" x2="629" y2="534"/>
+        </g>
+        <!-- Crisp shadow cast under top cover overhang -->
+        <path d="M 554 488 L 629 518 L 629 523 L 554 492 Z" fill="#473823" opacity="0.65"/>
+      </g>
+
+      <!-- Small dark binding/spine corner curve at far-left tip -->
+      <path d="M 552 487 C 549 494, 549 501, 552 508 L 557 507 C 555 500, 555 493, 557 488 Z" fill="#2a241d"/>
+      <path d="M 553 489 C 551 495, 551 501, 553 506" stroke="#574d40" stroke-width="0.8" fill="none" opacity="0.6"/>
+
+      <!-- Right-Front Aged Brown Page Block (lit fore-edge side) -->
+      <path d="M 629 518 L 714 475 L 713 495 L 629 538 Z" fill="url(#obj-grad-book-pages)"/>
+      <g clip-path="url(#obj-clip-book-pages)">
+        <rect x="625" y="472" width="94" height="72" filter="url(#obj-paper-grain)" opacity="0.55"/>
+        <!-- Fine stacked paper layers -->
+        <g stroke="#8e7246" stroke-width="0.6" opacity="0.55">
+          <line x1="629" y1="522" x2="714" y2="479"/>
+          <line x1="629" y1="525" x2="714" y2="482"/>
+          <line x1="629" y1="528" x2="714" y2="485"/>
+          <line x1="629" y1="531" x2="714" y2="488"/>
+          <line x1="629" y1="534" x2="714" y2="491"/>
+        </g>
+        <!-- Crisp shadow cast under top cover overhang -->
+        <path d="M 629 518 L 714 475 L 714 480 L 629 523 Z" fill="#4f3e26" opacity="0.68"/>
+      </g>
+
+      <!-- Subtle front-corner seam where the two page faces meet -->
+      <line x1="629" y1="518" x2="629" y2="538" stroke="#7d6442" stroke-width="0.9" opacity="0.7"/>
+
+      <!-- White Linen Hardcover Top Board -->
+      <path d="M 552 487 L 641 456 L 714 475 L 629 518 Z" fill="url(#obj-grad-book-cover)"/>
+      <g clip-path="url(#obj-clip-book-cover)">
+        <rect x="548" y="452" width="170" height="70" filter="url(#obj-linen-grain)" opacity="0.52"/>
+        <!-- Subtle crease groove near left edge -->
+        <path d="M 556 485 L 633 516" stroke="#b6b7b4" stroke-width="1.2" opacity="0.55"/>
+        <path d="M 558 484 L 635 515" stroke="#f7f8f7" stroke-width="1.0" opacity="0.55"/>
+        <!-- Soft wear smudge near front corner -->
+        <ellipse cx="645" cy="502" rx="18" ry="6" fill="#c7c6c0" opacity="0.30" filter="url(#obj-shadow-xs)" transform="rotate(-24 645 502)"/>
+      </g>
+      <!-- Top cover beveled thickness rim -->
+      <path d="M 552 487 L 641 456 L 714 475 L 629 518 Z" stroke="#f4f5f4" stroke-width="1.1" fill="none" opacity="0.72"/>
+      <path d="M 552 487 L 629 518 L 714 475" stroke="#b7b4aa" stroke-width="1.2" fill="none" opacity="0.85"/>
+    </g>
+    <!-- Framing Foreground Wheat Stalks weaving IN FRONT of the wooden plank -->
+    <g>
+      <use href="#wheat-cluster-a" transform="translate(466,640) scale(0.92) rotate(6)"/>
+      <use href="#wheat-cluster-b" transform="translate(508,658) scale(0.95) rotate(-5)"/>
+      <use href="#wheat-cluster-b" transform="translate(744,644) scale(0.96) rotate(4)"/>
+      <use href="#wheat-cluster-a" transform="translate(792,638) scale(1.00) scale(-1,1) rotate(5)"/>
+      <!-- Soft out-of-focus foreground stalks below plank -->
+      <g filter="url(#wheat-near-bokeh)" opacity="0.85">
+        <use href="#wheat-cluster-c" transform="translate(442,704) scale(1.18) rotate(8)"/>
+        <use href="#wheat-cluster-a" transform="translate(612,724) scale(1.06) rotate(-5)"/>
+        <use href="#wheat-cluster-c" transform="translate(812,698) scale(1.22) scale(-1,1) rotate(-7)"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ======================================================================= -->
+  <!-- FOREGROUND OBJECT 3: TALL RUSTIC WOODEN CHAIR AT NIGHT                  -->
+  <!-- ======================================================================= -->
+  <g id="obj-night-chair" clip-path="url(#clip-panel3-full)">
+    <!-- Soft nocturnal ground shadow underneath chair -->
+    <ellipse cx="1046" cy="574" rx="54" ry="12" fill="#040604" opacity="0.72" filter="url(#obj-shadow-soft)"/>
+
+    <!-- Back Legs & Rear Stretcher (recessed slightly in perspective & shadow) -->
+    <g>
+      <path d="M 1012 462 L 1018 462 L 1017 562 L 1013 562 Z" fill="#13100d"/>
+      <path d="M 1074 462 L 1080 462 L 1079 562 L 1075 562 Z" fill="#13100d"/>
+      <!-- Rear horizontal stretcher -->
+      <path d="M 1017 506 L 1075 506 L 1075 511 L 1017 511 Z" fill="#100d0b"/>
+      <!-- Side stretchers connecting front & back legs -->
+      <path d="M 1004 514 L 1014 507 L 1014 512 L 1004 519 Z" fill="#181410"/>
+      <path d="M 1088 514 L 1078 507 L 1078 512 L 1088 519 Z" fill="#181410"/>
+    </g>
+
+    <!-- High Backrest Frame & Vertical Slats -->
+    <g>
+      <!-- Left & Right outer stiles -->
+      <path d="M 1012 307 L 1019 307 L 1019 453 L 1012 453 Z" fill="url(#obj-grad-chair-rim-l)"/>
+      <path d="M 1073 307 L 1080 307 L 1080 453 L 1073 453 Z" fill="url(#obj-grad-chair-rim-l)"/>
+
+      <!-- Inner vertical slats (matching exact silhouette & spacing) -->
+      <path d="M 1030 321 L 1036 321 L 1036 452 L 1030 452 Z" fill="url(#obj-grad-chair-front)"/>
+      <path d="M 1045 321 L 1055 321 L 1055 452 L 1045 452 Z" fill="url(#obj-grad-chair-front)"/>
+
+      <!-- Top Shaped Rail -->
+      <path d="M 1012 307 Q 1032 305, 1046 308 Q 1060 305, 1080 307 L 1080 322 Q 1046 320, 1012 322 Z"
+            fill="url(#obj-grad-chair-front)"/>
+
+      <!-- Faint cool starlight rim reflections along backrest edges facing night sky -->
+      <path d="M 1012 307 Q 1032 305, 1046 308 Q 1060 305, 1080 307" stroke="#6c6960" stroke-width="1.3" fill="none" opacity="0.8"/>
+      <path d="M 1012.5 308 L 1012.5 452 M 1018.5 322 L 1018.5 451" stroke="#4c4940" stroke-width="0.9" opacity="0.7"/>
+      <path d="M 1030.5 322 L 1030.5 451 M 1035.5 322 L 1035.5 451" stroke="#454139" stroke-width="0.8" opacity="0.65"/>
+      <path d="M 1045.5 322 L 1045.5 451 M 1054.5 322 L 1054.5 451" stroke="#47433b" stroke-width="0.9" opacity="0.65"/>
+      <path d="M 1073.5 322 L 1073.5 451 M 1079.5 308 L 1079.5 452" stroke="#4b483f" stroke-width="0.9" opacity="0.7"/>
+    </g>
+
+    <!-- Wooden Seat & Under-Seat Apron -->
+    <g>
+      <!-- Top horizontal seat surface (catches cool pale starlight) -->
+      <path d="M 1008 450 L 1084 450 L 1099 458 L 994 458 Z" fill="url(#obj-grad-chair-seat)"/>
+      <!-- Seat plank horizontal grain & wear streaks -->
+      <path d="M 1002 454 H 1090" stroke="#7d7b73" stroke-width="0.8" opacity="0.5"/>
+      <path d="M 1005 452 H 1086" stroke="#2d2922" stroke-width="0.8" opacity="0.45"/>
+      <!-- Bright beveled front lip -->
+      <path d="M 994 458 H 1099" stroke="#85837b" stroke-width="1.2" opacity="0.75"/>
+
+      <!-- Seat front thickness & recessed shadow apron -->
+      <path d="M 994 458 L 1099 458 L 1098 465 L 995 465 Z" fill="#181410"/>
+      <path d="M 1002 465 L 1091 465 L 1089 479 L 1004 479 Z" fill="#100d0a"/>
+    </g>
+
+    <!-- Front Tapered Wooden Legs -->
+    <g>
+      <path d="M 998 464 L 1007 464 L 1005 581 L 999 581 Z" fill="url(#obj-grad-chair-front)"/>
+      <path d="M 1085 464 L 1094 464 L 1093 581 L 1087 581 Z" fill="url(#obj-grad-chair-front)"/>
+      <!-- Subtle outer vertical leg rim highlights -->
+      <path d="M 998.5 465 L 999.5 578" stroke="#443f36" stroke-width="0.9" opacity="0.65"/>
+      <path d="M 1085.5 465 L 1087.5 578" stroke="#3f3a31" stroke-width="0.9" opacity="0.58"/>
+      <path d="M 1006.5 465 L 1005 578 M 1093.5 465 L 1092.5 578" stroke="#080705" stroke-width="0.9" opacity="0.8"/>
+    </g>
+
+    <!-- Subtle grass tufts overlapping the chair feet so it sits naturally in the turf -->
+    <g stroke="#1b2319" stroke-width="1.3" stroke-linecap="round" fill="none">
+      <path d="M 998 583 Q 996 575, 993 571 M 1002 583 Q 1003 574, 1006 570 M 1005 582 Q 1007 576, 1010 573"/>
+      <path d="M 1012 564 Q 1010 557, 1008 553 M 1016 564 Q 1018 558, 1020 554"/>
+      <path d="M 1074 564 Q 1072 557, 1070 553 M 1078 564 Q 1080 558, 1083 554"/>
+      <path d="M 1086 583 Q 1084 575, 1081 571 M 1090 583 Q 1092 574, 1095 570 M 1093 582 Q 1096 576, 1098 573"/>
+    </g>
+  </g>
+</svg>
